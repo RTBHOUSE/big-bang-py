@@ -34,3 +34,35 @@
         - `check`: **checks for security vulnerabilities** and asserts that PEP 508 requirements are being met by the current environment.
 
 - You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
+
+
+## Invoke - Task Management & Command Execution
+
+- It is recommended to **turn into a task every project related shell command** which will be called more than a couple of times and is not super-common (like `ls` with basic flags).
+
+- **Manage and execute those project tasks via [Invoke](http://www.pyinvoke.org).**
+
+- You can easily replace `Makefiles` and similar tools as Invoke is dead simple.
+
+- Invoke tasks are called by typing in the shell `invoke *task-name*`
+
+- Invoke tasks are normal Python functions organised in `tasks.py` file.
+
+- Docstrings of Invoke tasks functions are neatly converted into classic command line tool help:
+
+```
+>>> invoke --list
+Available tasks:
+
+  task1      First line of docstring of task1.
+  task2      First line of docstring of task2.
+
+# Get full docstring of a particular task:  
+>>> invoke --help *task-name*
+```
+
+- [Invoke tasks can be organised using namespaces](http://docs.pyinvoke.org/en/1.2/getting-started.html#creating-namespaces). Then, for instance, you can call server tasks like `jenkins.deploy`/`jenkins.logs` or organise job-related tasks like `job.start`/`job.stop`.
+
+- You may find examples of tasks in `tasks.py` in project root of this repo.
+
+- [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid, so it is recommended get familiar with it. 
