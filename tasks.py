@@ -55,13 +55,12 @@ def update_isort(c):
 
 @task
 def update_yapf(c):
-    """Update .style.yapf."""
+    """
+    Update `.style.yapf` by copying the version from the local clone of repo
+    Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
+    """
 
-    if 'BIG_BANG_PY_DIR' not in os.environ:
-        raise RuntimeError(
-            'Please setup `BIG_BANG_PY_DIR` ENV pointing to the local copy '
-            'of Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).'
-        )
+    check_if_big_bang_py_dir_env_exists()
     c.run('cp $BIG_BANG_PY_DIR/.style.yapf .', pty=True)
 
 
@@ -69,7 +68,8 @@ def update_yapf(c):
 def tests(c):
     """Run pytests."""
 
-    c.run('python -m pytest --cov=src --cov=envs --cov-branch', pty=True)
+    c.run('python -m pytest --cov=src --cov-branch', pty=True)
+
 
 def check_if_big_bang_py_dir_env_exists():
     if 'BIG_BANG_PY_DIR' not in os.environ:

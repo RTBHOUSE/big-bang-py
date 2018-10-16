@@ -1,4 +1,4 @@
-## TL;DR
+## TL;DR Checklist
 
 - Use [.gitignore](https://git-scm.com/docs/gitignore).
 
@@ -93,7 +93,7 @@ Available tasks:
 
 - [Invoke tasks can be organised using namespaces](http://docs.pyinvoke.org/en/1.2/getting-started.html#creating-namespaces). Then, for instance, you can call server tasks like `jenkins.deploy`/`jenkins.logs` or organise job-related tasks like `job.start`/`job.stop`.
 
-- You may find examples of tasks in `tasks.py` in project root of this repo.
+- You may find examples of tasks in this repo's [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).
 
 - [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid, so it is recommended get familiar with it. 
 
@@ -104,11 +104,11 @@ Available tasks:
 
 - The formatting style used by YAPF is configurable. Specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file in the root of your project, so YAPF can automatically pick this config up.
 
-- You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) in this repo.
+- You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) in the root of this repo.
 
-    - Invoke task `update_yapf` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) automates updating `.style.yapf` in your repo based on the version from the local clone of [Big-Bang-py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/).
+    - Invoke task `update_yapf` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.style.yapf` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py)
 
-- It is recommended to run YAPF automatically when calling your linting Invoke task and also during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit).
+- It is recommended to include YAPF in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit).
 
 - Surival tips:
     
