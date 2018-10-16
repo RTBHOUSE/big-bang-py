@@ -1,8 +1,19 @@
+## TL;DR
+
+- Use Python 3.7.
+
+- Manage your dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
+
+- Manage and execute your tasks via [Invoke](http://www.pyinvoke.org).
+
+
 ## Python version
 
 - **It is recommended to use Python 3.7.**
 
-- There is a nice summary of new features on [Real Python](https://realpython.com/python37-new-features), while detailed description can be found in [official docs](https://docs.python.org/3/whatsnew/3.7.html). To name some notable additions:
+- There is a nice summary of new features on [Real Python](https://realpython.com/python37-new-features). More detailed description can be found in [official docs](https://docs.python.org/3/whatsnew/3.7.html).
+
+- To name some notable additions:
 
     - [Data Classes](https://realpython.com/python-data-classes) can easily replace [namedtuples](https://docs.python.org/3.7/library/collections.html#collections.namedtuple) and [attrs](https://github.com/python-attrs/attrs).
     
@@ -15,7 +26,7 @@
 
 ## Pipenv - Python Packing Tool
 
-- **Use Pipenv as Python packaging tool.**
+- **Use [Pipenv](https://pipenv.readthedocs.io/en/latest) as Python packaging tool.**
 
 - Pipenv consolidates `pip` & `virtualenv` as well as offers some powerful features:
 
