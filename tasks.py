@@ -1,3 +1,5 @@
+import os
+
 from invoke import task
 
 
@@ -38,6 +40,17 @@ def lint(c):
 
     c.run('python -m isort --version', pty=True)
     c.run('python -m isort --apply', pty=True)
+
+@task
+def update_gitignore(c):
+    """Update .gitignore."""
+
+    if 'BIG_BANG_PY_DIR' not in os.environ:
+        raise RuntimeError(
+            'Please setup `BIG_BANG_PY_DIR` ENV pointing to the local copy '
+            'of Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).'
+        )
+    c.run('cp $BIG_BANG_PY_DIR/.gitignore .', pty=True)
 
 
 @task

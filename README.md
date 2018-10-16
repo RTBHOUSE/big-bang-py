@@ -15,9 +15,11 @@
 
 - If you are using PyCharm, definitely install [.ignore plugin](https://github.com/hsz/idea-gitignore). This will make managing `.gitignore` a breeze. 
 
-- If you do not want to create `.gitignore` using PyCharm's .ignore plugin, you can use web service of [gitignore.io](https://www.gitignore.io).
+- Alternatively, it is possible to generate .gitignore online using [gitignore.io](https://www.gitignore.io).
 
-- There is also a copy of a pre-defined `.gitignore` for Python projects in the root of this repo.
+- You may also find [example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.gitignore) of Python project .gitignore in this repo.
+
+    - Task `update_gitignore` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) automates updating .gitignore in your repo by copying the version from local copy of Big-Bang-py.
 
 
 ## Python version
