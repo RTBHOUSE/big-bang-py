@@ -8,6 +8,8 @@
 
 - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
 
+- Format Python files with [YAPF](https://github.com/google/yapf).
+
 
 ## .gitignore
 
@@ -18,8 +20,6 @@
 - Alternatively, it is possible to generate .gitignore online using [gitignore.io](https://www.gitignore.io).
 
 - You may also find [example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.gitignore) of Python project .gitignore in this repo.
-
-    - Task `update_gitignore` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) automates updating .gitignore in your repo by copying the version from local copy of Big-Bang-py.
 
 
 ## Python version
@@ -94,3 +94,29 @@ Available tasks:
 - You may find examples of tasks in `tasks.py` in project root of this repo.
 
 - [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid, so it is recommended get familiar with it. 
+
+
+## YAPF - Python Files Formatter
+
+- **The ultimate goal of [YAPF](https://github.com/google/yapf) is to produce code as good as the code that a programmer would write if they were following a style guide.**
+
+- The formatting style used by YAPF is configurable. Specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file in the root of your project, so YAPF can automatically pick this config up.
+
+- You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) in this repo.
+
+    - Invoke task `update_yapf` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) automates updating `.style.yapf` in your repo based on the version from the local clone of [Big-Bang-py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/).
+
+- It is recommended to run YAPF automatically when calling your linting Invoke task and also during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit).
+
+- Surival tips:
+    
+    - If you leave trailing comma in a collection (list, tuple, function parameters etc.) YAPF will force the collection to break giving one element per line.
+    
+    - From time to time you WILL see weirdly formatted code as YAPF is not perfect. There are at least two major occurences: 
+    
+        - Deeply Nested Dicts - This is quite understandable as decisions that improve readability are usually arbitrary and should be solved on a case-by-case basis.
+         
+        - Complex Comprehensions - YAPF assumes that only comprehension that exceed column limit are complex enough to be formatted... This issue is brought to the attention of both YAPF authors and to the general public as well (see posts on [Github](https://github.com/google/yapf/issues/628), [Stack Overflow](https://stackoverflow.com/questions/52558919/is-there-a-way-to-force-yapf-to-always-split-fold-comprehensions) and [Reddit](https://www.reddit.com/r/Python/comments/9mov4r/is_there_a_way_to_force_yapf_to_always_splitfold)).
+  
+    - To manage all edge cases, [disable YAPF per line or even per block](https://github.com/google/yapf#why-does-yapf-destroy-my-awesome-formatting). 
+    

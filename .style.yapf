@@ -1,0 +1,29 @@
+[style]
+column_limit = 100
+indent_width = 4
+continuation_indent_width = 4
+spaces_before_comment = 2
+blank_lines_around_top_level_definition = 2
+
+dedent_closing_brackets = true
+
+space_between_ending_comma_and_closing_bracket = false
+
+split_complex_comprehension = true
+split_before_dict_set_generator = true
+split_before_logical_operator = true
+split_before_bitwise_operator = true
+coalesce_brackets = true
+
+each_dict_entry_on_separate_line = true
+
+split_all_comma_separated_values = false
+split_before_first_argument = false
+split_before_named_assigns = true
+
+split_penalty_comprehension = -40
+split_penalty_for_added_line_split = 0
+split_penalty_import_names = -20
+
+allow_split_before_dict_value = false
+indent_dictionary_value = true
