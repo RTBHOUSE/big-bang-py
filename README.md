@@ -1,10 +1,23 @@
 ## TL;DR
 
+- Use [.gitignore](https://git-scm.com/docs/gitignore).
+
 - Use Python 3.7.
 
 - Manage your dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
 
-- Manage and execute your tasks via [Invoke](http://www.pyinvoke.org).
+- Manage and execute your command line tasks via [Invoke](http://www.pyinvoke.org).
+
+
+## .gitignore
+
+- ALWAYS use `.gitignore`. It specifies files intentionally ignored by Git.
+
+- If you are using PyCharm, definitely install [.ignore plugin](https://github.com/hsz/idea-gitignore). This will make managing `.gitignore` a breeze. 
+
+- If you do not want to create `.gitignore` using PyCharm's .ignore plugin, you can use web service of [gitignore.io](https://www.gitignore.io).
+
+- There is also a copy of a pre-defined `.gitignore` for Python projects in the root of this repo.
 
 
 ## Python version
