@@ -10,6 +10,8 @@
 
 - Format Python files with [YAPF](https://github.com/google/yapf).
 
+- Sort your imports with [Isort](https://github.com/timothycrosley/isort).
+
 
 ## .gitignore
 
@@ -118,5 +120,23 @@ Available tasks:
          
         - Complex Comprehensions - YAPF assumes that only comprehension that exceed column limit are complex enough to be formatted... This issue is brought to the attention of both YAPF authors and to the general public as well (see posts on [Github](https://github.com/google/yapf/issues/628), [Stack Overflow](https://stackoverflow.com/questions/52558919/is-there-a-way-to-force-yapf-to-always-split-fold-comprehensions) and [Reddit](https://www.reddit.com/r/Python/comments/9mov4r/is_there_a_way_to_force_yapf_to_always_splitfold)).
   
-    - To manage all edge cases, [disable YAPF per line or even per block](https://github.com/google/yapf#why-does-yapf-destroy-my-awesome-formatting). 
+    - To manage all edge cases, [disable YAPF per line or per block](https://github.com/google/yapf#why-does-yapf-destroy-my-awesome-formatting). 
     
+
+## Isort - Python Imports Sorter
+
+- [Isort](https://github.com/timothycrosley/isort) is a Python library to sort imports.
+
+- Most importantly, Isort sorts imports alphabetically and separates them into defined sections. 
+
+- There are several ways to configure Isort's behavior. Full reference of every setting can be found [here](https://github.com/timothycrosley/isort/wiki/isort-Settings#full-reference-of-isort-settings).
+
+- You can specify project level configuration simply by placing a `.isort.cfg` file at the root of your project.
+
+- You may find pre-configured [.isort.cfg](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.isort.cfg) in the root of this repo.
+
+    - Invoke task `update_isort` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.isort.cfg` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py)
+    
+- It is recommended to include Isort in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit).
+
+- To manage all edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).

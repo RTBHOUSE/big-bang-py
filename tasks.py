@@ -41,6 +41,18 @@ def lint(c):
     c.run('python -m isort --version', pty=True)
     c.run('python -m isort --apply', pty=True)
 
+
+@task
+def update_isort(c):
+    """
+    Update `.isort.cfg` by copying the version from the local clone of repo
+    Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
+    """
+
+    check_if_big_bang_py_dir_env_exists()
+    c.run('cp $BIG_BANG_PY_DIR/.isort.cfg .', pty=True)
+
+
 @task
 def update_yapf(c):
     """Update .style.yapf."""
@@ -58,3 +70,10 @@ def tests(c):
     """Run pytests."""
 
     c.run('python -m pytest --cov=src --cov=envs --cov-branch', pty=True)
+
+def check_if_big_bang_py_dir_env_exists():
+    if 'BIG_BANG_PY_DIR' not in os.environ:
+        raise RuntimeError(
+            'Please setup `BIG_BANG_PY_DIR` ENV holding full path to the local '
+            'copy of Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).'
+        )
