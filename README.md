@@ -4,9 +4,9 @@
 
 - Use Python 3.7.
 
-- Manage your dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
+- Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
 
-- Manage and execute your command line tasks via [Invoke](http://www.pyinvoke.org).
+- Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
 
 
 ## .gitignore
@@ -53,7 +53,7 @@
     
     - Essential commands:
     
-        - `shell`: spawns a shell with the virtualenv activated. If a `.env` file is present in your project, shell will automatically load it for you.
+        - **`shell`: spawns a shell with the virtualenv activated. If a `.env` file is present in your project, shell will automatically load it for you.**
         
         - `run`: runs a given command from the virtualenv, with any arguments forwarded (e.g. `$ pipenv run python`).
         

@@ -11,7 +11,7 @@ def coverage(c):
 
 
 @task
-def precommit(c):
+def install_precommit(c):
     """Install pre-commit githook."""
 
     c.run('cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit', pty=True)
