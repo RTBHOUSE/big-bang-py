@@ -2,7 +2,7 @@
 
 - Use [.gitignore](https://git-scm.com/docs/gitignore).
 
-- Use Python 3.7.
+- Use [Python 3.7](https://docs.python.org/3/whatsnew/3.7.html).
 
 - Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
 
@@ -10,7 +10,7 @@
 
 - Format Python files with [YAPF](https://github.com/google/yapf).
 
-- Sort your imports with [Isort](https://github.com/timothycrosley/isort).
+- Sort Python imports with [Isort](https://github.com/timothycrosley/isort).
 
 
 ## .gitignore
@@ -106,9 +106,9 @@ Available tasks:
 
 - You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) in the root of this repo.
 
-    - Invoke task `update_yapf` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.style.yapf` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py)
+    - Invoke task `update_yapf` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.style.yapf` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
 
-- It is recommended to include YAPF in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit).
+- It is recommended to include YAPF in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
 
 - Surival tips:
     
@@ -135,8 +135,23 @@ Available tasks:
 
 - You may find pre-configured [.isort.cfg](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.isort.cfg) in the root of this repo.
 
-    - Invoke task `update_isort` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.isort.cfg` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py)
+    - Invoke task `update_isort` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.isort.cfg` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
     
-- It is recommended to include Isort in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit).
+- It is recommended to include Isort in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
 
 - To manage all edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).
+
+
+## McCabe - Code Complexity Checker
+
+- [mccabe](https://github.com/pycqa/mccabe) library automatically detects over-complex code based on cyclomatic complexity (for curious, consult [tutorialspoint](https://www.tutorialspoint.com/software_testing_dictionary/cyclomatic_complexity.htm) and [Wikipedia](https://en.wikipedia.org/wiki/Cyclomatic_complexity)).
+
+- Cyclomatic complexity is roughly equivalent to one plus the number of loops and if statements. The simple interpretation is that it is an upper bound for the number of test cases required to obtain branch coverage of the code. So, in the context of testing, cyclomatic complexity can be used to estimate the required effort for writing tests.
+
+- Code with high cyclomatic complexity (usually assumed as 10+) is likely to be difficult to understand and therefore have a higher probability of containing defects.
+    
+- It is recommended to include McCabe in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
+
+    - Cut-off complexity is currently assumed to be 7. However, this number should be adjusted to reflect your experience and project's needs.
+    
+- Invoke task `update_mccabe` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `run-mccabe.py` script by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).

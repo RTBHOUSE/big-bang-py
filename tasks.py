@@ -18,17 +18,8 @@ def install_precommit(c):
 
 
 @task
-def job(c):
-    """
-    Run job doing X, Y and Z.
-    """
-
-    c.run('python ./job.py', pty=True)
-
-
-@task
 def lint(c):
-    """Lint source code using YAPF and isort."""
+    """Lint source code using YAPF, Isort and McCabe."""
 
     print('')
     print('#######################################')
@@ -41,12 +32,30 @@ def lint(c):
     c.run('python -m isort --version', pty=True)
     c.run('python -m isort --apply', pty=True)
 
+    print('')
+    print('####################################')
+    print('# McCabe - Code Complexity Checker #')
+    print('####################################')
+    print('')
+    c.run('python run-mccabe.py 7', pty=True)
+
 
 @task
 def update_isort(c):
     """
     Update `.isort.cfg` by copying the version from the local clone of repo
     Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
+    """
+
+    check_if_big_bang_py_dir_env_exists()
+    c.run('cp $BIG_BANG_PY_DIR/.isort.cfg .', pty=True)
+
+
+@task
+def update_mccabe(c):
+    """
+    Update `run-mccabe.py` script by copying the version from the local clone of
+    repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
     """
 
     check_if_big_bang_py_dir_env_exists()
@@ -66,7 +75,7 @@ def update_yapf(c):
 
 @task
 def tests(c):
-    """Run pytests."""
+    """Run pytests with coverage report."""
 
     c.run('python -m pytest --cov=src --cov-branch', pty=True)
 
