@@ -12,6 +12,8 @@
 
 - Sort Python imports with [Isort](https://github.com/timothycrosley/isort).
 
+- Scan code complexity by calling `run-mccabe.py` script.
+
 
 ## .gitignore
 
@@ -110,11 +112,11 @@ Available tasks:
 
 - It is recommended to include YAPF in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
 
-- Surival tips:
+- Survival tips:
     
     - If you leave trailing comma in a collection (list, tuple, function parameters etc.) YAPF will force the collection to break giving one element per line.
     
-    - From time to time you WILL see weirdly formatted code as YAPF is not perfect. There are at least two major occurences: 
+    - From time to time you WILL see weirdly formatted code as YAPF is not perfect. There are at least two major occurrences: 
     
         - Deeply Nested Dicts - This is quite understandable as decisions that improve readability are usually arbitrary and should be solved on a case-by-case basis.
          
