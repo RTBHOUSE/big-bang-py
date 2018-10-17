@@ -6,6 +6,8 @@
 
 - Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
 
+- Store config (credentials, secrets, etc.) in [ENVs](https://12factor.net/config).
+
 - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
 
 - Format Python files with [YAPF](https://github.com/google/yapf).
@@ -66,6 +68,21 @@
         - `check`: **checks for security vulnerabilities** and asserts that PEP 508 requirements are being met by the current environment.
 
 - You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
+
+
+## Store config in ENVs
+
+- **The [Twelve-Factor App](https://12factor.net/config) stores config in environment variables.**
+
+    - Note that this definition of 'config' does not include internal application config, such as Django or Flask knobs & settings. This type of config does not vary between deploys, nor contains sensitive credentials, so is best done in the code.
+
+- **A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment without compromising any secrets or credentials.**
+
+- Usually there are multiple ENV files, e.g. separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
+
+    - An example is present in the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. 
+    
+    - You can find there ENVs loader using [python-dotenv](https://github.com/theskumar/python-dotenv).
 
 
 ## Invoke - Task Management & Command Execution
