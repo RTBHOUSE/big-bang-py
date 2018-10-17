@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+
+from isort.hooks import git_hook as isort_githook
+
+if __name__ == '__main__':
+    print('')
+    print('#############')
+    print('# Run tests #')
+    print('#############')
+    print('')
+    tests_return_code = subprocess.run(['invoke', 'tests']).returncode
+    # Exit code 0:	All tests were collected and passed successfully
+    # Exit code 5:	No tests were collected
+    if tests_return_code not in {0, 5}:
+        print('')
+        print(f'Tests Exit Status: {tests_return_code} => aborting commit!')
+        sys.exit(tests_return_code)
+
+    print('')
+    print('###########################')
+    print('# Dependency Safety Check #')
+    print('###########################')
+    print('')
+    print('Scan your dependency graph for known security vulnerabilities!')
+    print('')
+    print('See below for further information:')
+    print('⚔️  https://github.com/pypa/pipenv/blob/master/docs/advanced.rst#-detection-of-security-vulnerabilities')  # yapf: disable
+    print('⚔️  https://github.com/pyupio/safety-db')
+    print('')
+    subprocess.run(['pipenv', 'check'])
+    print('')
+
+    print('')
+    print('######################')
+    print('# Import Order Check #')
+    print('######################')
+    print('')
+    isort_exit_status = isort_githook(strict=True)
+    if isort_exit_status == 0:
+        print('Isort Exit Status: 0 => OK!')
+    else:
+        sys.exit(isort_exit_status)
+
+    print('')
+    print('################################')
+    print('# Code Formatting Check (YAPF) #')
+    print('################################')
+    print('')
+    yapf_return_code = subprocess.run(['yapf', '--recursive', '--diff', '.']).returncode
+    if yapf_return_code == 0:
+        print('YAPF Exit Status: 0 => OK!')
+        print('')
+    else:
+        print('')
+        print(f'YAPF Exit Status: {yapf_return_code} => aborting commit!')
+        print('')
+        sys.exit(yapf_return_code)
+
+    print('')
+    print('##################################')
+    print('# Code Complexity Check (McCabe) #')
+    print('##################################')
+    print('')
+    mccabe_result_obj = subprocess.run(['python', 'run_mccabe.py', '7'], capture_output=True)
+    mccabe_result_str = mccabe_result_obj.stdout.decode()
+    mccabe_result_lines_num = len(mccabe_result_str.split('\n')[:-1])
+    if mccabe_result_lines_num == 1:
+        print('McCabe cyclomatic complexity is below threshold for every piece of code => OK!')
+        print('')
+    else:
+        print(mccabe_result_str)
+        print(
+            f'Code is over-complex! Check McCabe cyclomatic complexity output. '
+            f'=> aborting commit!'
+        )
+        print('')
+        sys.exit(1)
