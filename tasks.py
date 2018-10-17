@@ -18,7 +18,7 @@ def install_precommit(c):
 
 
 @task
-def lint(c):
+def linters(c):
     """Lint source code using YAPF, Isort and McCabe."""
 
     print('')
@@ -37,7 +37,8 @@ def lint(c):
     print('# McCabe - Code Complexity Checker #')
     print('####################################')
     print('')
-    c.run('python run-mccabe.py 7', pty=True)
+    c.run('python run_mccabe.py 7', pty=True)
+    print('')
 
 
 @task
@@ -49,14 +50,17 @@ def setup_big_bang_py(c):
     (https://bitbucket.org/rtbhouse/big-bang-py).
     """
     check_if_big_bang_py_dir_env_exists()
-    copy_from_big_bang_py_to_local_dir(c, file_or_dir_names=[
-        '.isort.cfg',
-        '.style.yapf',
-        'envs',
-        'pytest.ini',
-        'run-mccabe.py',
-        'tasks.py',
-    ])
+    copy_from_big_bang_py_to_local_dir(
+        c,
+        file_or_dir_names=[
+            '.isort.cfg',
+            '.style.yapf',
+            'envs',
+            'pytest.ini',
+            'run_mccabe.py',
+            'tasks.py',
+        ]
+    )
 
 
 @task

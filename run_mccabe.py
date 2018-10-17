@@ -2,7 +2,7 @@
 Check recursively McCabe complexity of Python files.
 
 Usage:
-> python run-mccabe.py **max_complexity**
+> python run_mccabe.py **max_complexity**
 
 This script is slightly changed version of @dmerejkowsky gist:
 https://gist.github.com/dmerejkowsky/8aa70f5f6b7f04165f8e041ee9e3b177
@@ -21,7 +21,7 @@ U_LINESEPS = LINESEPS + ['\u0085', '\u2028', '\u2029']
 U_NEWLINE = re.compile('|'.join(U_LINESEPS))
 
 
-def main():
+def run_mccabe():
     max_complexity = int(sys.argv[1])
     print("Looking for code with complexity above", max_complexity)
     for py_file in yield_py_files():
@@ -55,4 +55,4 @@ def process(py_file, max_complexity):
 
 
 if __name__ == "__main__":
-    main()
+    run_mccabe()
