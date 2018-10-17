@@ -10,11 +10,15 @@
 
 - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
 
+    - **Setup Big-Bang-py files and dirs by invoking task [setup_big_bang_py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).**
+
 - Format Python files with [YAPF](https://github.com/google/yapf).
 
 - Sort Python imports with [Isort](https://github.com/timothycrosley/isort).
 
 - Scan code complexity by calling `run-mccabe.py` script.
+
+- Use [pytest](https://docs.pytest.org/en/latest/) as Python test framework.
 
 
 ## .gitignore
@@ -125,8 +129,6 @@ Available tasks:
 
 - You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) in the root of this repo.
 
-    - Invoke task `update_yapf` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.style.yapf` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
-
 - It is recommended to include YAPF in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
 
 - Survival tips:
@@ -153,8 +155,6 @@ Available tasks:
 - You can specify project level configuration simply by placing a `.isort.cfg` file at the root of your project.
 
 - You may find pre-configured [.isort.cfg](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.isort.cfg) in the root of this repo.
-
-    - Invoke task `update_isort` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `.isort.cfg` by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
     
 - It is recommended to include Isort in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
 
@@ -172,5 +172,56 @@ Available tasks:
 - It is recommended to include McCabe in your linting Invoke task and also run it during pre-commit Git Hook. Example of both can be found in this repo, respectively in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pre-commit) files.
 
     - Cut-off complexity is currently assumed to be 7. However, this number should be adjusted to reflect your experience and project's needs.
+
+
+## Pytest - Python Test Framework
+
+- **Pytest is the recommended Python test framework.**
+
+    - It is simple & programmer-friendly.
     
-- Invoke task `update_mccabe` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) updates your project's `run-mccabe.py` script by copying the version from the local clone of repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
+    - Yet offers great depth and complexity, if necessary.
+
+- Major features:
+
+    - Battle-tested and mature.
+    
+    - Informative test failures.
+    
+    - Auto-discovery of test modules and functions.
+    
+    - Less verbose (assert vs. self.assertEqual etc.).
+     
+    - Classes are not required.
+     
+    - A far more convenient way to write setup/teardown functions with fixtures.
+     
+    - Parameterized tests.
+     
+    - Nice test runner (marker- and name-based test selection).
+    
+    - Rich CLI interface.
+    
+    - Rich plugin architecture.
+    
+    - Can run unittest and nose test suites out of the box.
+    
+- You can change command line options defaults by defining them in a configuration file called `pytest.ini`. You can find [an example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pytest.ini) in the root of this repo.
+
+- Recommended plugins:
+
+    - [pytest-cov](https://pypi.org/project/pytest-cov/) - Prints coverage report at the end of test runner report.
+    
+    - [pytest-mock](https://pypi.org/project/pytest-mock/) - Adds `mocker` fixture, which makes mocks easier and more readable.
+
+    - [pytest-socket](https://pypi.org/project/pytest-socket/) - Disables socket calls during tests to ensure network calls are prevented. Amazing to protect yourself against incidental DB or API calls.
+
+    - [pytest-sugar](https://pypi.org/project/pytest-sugar/) - Makes test runner report even nicer.
+
+- Useful content:
+
+    - [Why pytest?](http://thesoftjaguar.com/pres_pytest.html#/)
+    
+    - [Official documentation](https://docs.pytest.org/en/latest/contents.html)
+    
+    - [Python Testing with pytest: Simple, Rapid, Effective, and Scalable](https://www.amazon.com/Python-Testing-pytest-Effective-Scalable/dp/1680502409)

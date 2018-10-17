@@ -41,36 +41,22 @@ def lint(c):
 
 
 @task
-def update_isort(c):
+def setup_big_bang_py(c):
     """
-    Update `.isort.cfg` by copying the version from the local clone of repo
-    Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
-    """
+    Setup Big-Bang-py files and dirs.
 
+    In fact, copy their version from the local clone of repo Big-Bang-py
+    (https://bitbucket.org/rtbhouse/big-bang-py).
+    """
     check_if_big_bang_py_dir_env_exists()
-    c.run('cp $BIG_BANG_PY_DIR/.isort.cfg .', pty=True)
-
-
-@task
-def update_mccabe(c):
-    """
-    Update `run-mccabe.py` script by copying the version from the local clone of
-    repo Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
-    """
-
-    check_if_big_bang_py_dir_env_exists()
-    c.run('cp $BIG_BANG_PY_DIR/.isort.cfg .', pty=True)
-
-
-@task
-def update_yapf(c):
-    """
-    Update `.style.yapf` by copying the version from the local clone of repo
-    Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).
-    """
-
-    check_if_big_bang_py_dir_env_exists()
-    c.run('cp $BIG_BANG_PY_DIR/.style.yapf .', pty=True)
+    copy_from_big_bang_py_to_local_dir(c, file_or_dir_names=[
+        '.isort.cfg',
+        '.style.yapf',
+        'envs',
+        'pytest.ini',
+        'run-mccabe.py',
+        'tasks.py',
+    ])
 
 
 @task
@@ -86,3 +72,8 @@ def check_if_big_bang_py_dir_env_exists():
             'Please setup `BIG_BANG_PY_DIR` ENV holding full path to the local '
             'copy of Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).'
         )
+
+
+def copy_from_big_bang_py_to_local_dir(c, file_or_dir_names):
+    for name in file_or_dir_names:
+        c.run(f'cp -R $BIG_BANG_PY_DIR/{name} .', pty=True)
