@@ -1,7 +1,5 @@
 ## TL;DR Checklist
 
-- Use [.gitignore](https://git-scm.com/docs/gitignore).
-
 - Use [Python 3.7](https://docs.python.org/3/whatsnew/3.7.html).
 
 - Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
@@ -16,20 +14,15 @@
 
 - Sort Python imports with [Isort](https://github.com/timothycrosley/isort).
 
-- Scan code complexity by calling `run-mccabe.py` script.
+- Scan code complexity by calling `run-mccabe.py`.
 
 - Use [pytest](https://docs.pytest.org/en/latest/) as Python test framework.
 
+- Git:
 
-## .gitignore
-
-- ALWAYS use `.gitignore`. It specifies files intentionally ignored by Git.
-
-- If you are using PyCharm, definitely install [.ignore plugin](https://github.com/hsz/idea-gitignore). This will make managing `.gitignore` a breeze. 
-
-- Alternatively, it is possible to generate .gitignore online using [gitignore.io](https://www.gitignore.io).
-
-- You may also find [example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.gitignore) of Python project .gitignore in this repo.
+    - Use [.gitignore](https://git-scm.com/docs/gitignore).
+    
+    - Install pre-commit githook.
 
 
 ## Python version
@@ -225,3 +218,25 @@ Available tasks:
     - [Official documentation](https://docs.pytest.org/en/latest/contents.html)
     
     - [Python Testing with pytest: Simple, Rapid, Effective, and Scalable](https://www.amazon.com/Python-Testing-pytest-Effective-Scalable/dp/1680502409)
+    
+
+## .gitignore
+
+- ALWAYS use `.gitignore`. It specifies files intentionally ignored by Git.
+
+- If you are using PyCharm, definitely install [.ignore plugin](https://github.com/hsz/idea-gitignore). This will make managing `.gitignore` a breeze. 
+
+- Alternatively, it is possible to generate .gitignore online using [gitignore.io](https://www.gitignore.io).
+
+- You may also find [example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.gitignore) of Python project .gitignore in this repo.
+
+
+## Pre-commit Git Hook
+
+- The pre-commit Git hook is run first, before you even type in a commit message.
+
+- It is a perfect opportunity to automatically run tests and linters, so your code is consistent, readable and passes both new and regressions tests.
+
+- You can find an example of pre-commit Git hook in [/hooks/pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.gitignore) of this repo.
+
+    - There is `install_precommit` Invoke task in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) that automatically setups pre-commit Git Hook for you.
