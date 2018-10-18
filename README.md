@@ -25,6 +25,8 @@
     - Store config (credentials, secrets, etc.) in [ENVs](https://12factor.net/config).
     
     - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
+    
+    - You should [log](https://realpython.com/python-logging/). No excuses.
 
 
 ## Initialization & Update
@@ -36,7 +38,6 @@
         - Pipenv.
     
         - `BIG_BANG_PY_DIR` ENV holding full path to the local copy of Big-Bang-py.
-        
 
 - If you wish to simply update Big-Bang-py files, adjust & run task `update_big_bang_files` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).
     
@@ -256,3 +257,37 @@ Available tasks:
 - You can find an example of pre-commit Git hook in [/hooks/pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) of this repo.
 
     - `install_precommit` Invoke task in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py)  takes your pre-commit Git Hook from `/hooks/pre-commit` and sets it up for you.
+
+
+## Logging Is A Programmer's Best Friend
+
+- **You should log. No excuses.**
+
+- Logging makes the flow of the application obvious & visible. This helps every interested party to reason about what and when is happening.
+
+- If done right, logging may literally save your day when real problems shred your beautiful code to pieces in production environment.
+
+- It can be tedious to configure the logging yourself. That is why in [/src/logging_config.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/src/logging_config.py) of this repo you can find pre-configured setup that is ready-to-go.
+
+    - In proposed setup logs are streamed to stderr as well as saved in $PROJECT_ROOT/logs.
+
+    - Logs saved in $PROJECT_ROOT/logs are processed by RotatingFileHandler. Therefore there is no risk that logs will grow indefinitely.
+
+    - Get even more inspired with the below snippet:
+    
+        ```python
+        # Load logging config
+        import logging.config
+        from src.logging_config import DICT_CONFIG
+        logging.config.dictConfig(DICT_CONFIG)
+        
+        # Get logger
+        logger = logging.getLogger('main')
+        
+        # Logging time!
+        logger.info('* THE GREAT BIRD IS LISTENING *')
+        ```
+
+- Learn more about logging in digestible form on [Real Python](https://realpython.com/python-logging/). 
+
+    - If you are an adventurous programmer that knows no fear, there is [official documentation](https://docs.python.org/3/library/logging.html) waiting out there. Bear in mind that because of this document, and its unnecessary complexity, a lot of people were scared off to the Sad Kingdom of Prints.
