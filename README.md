@@ -54,6 +54,10 @@
     
     -  `Pipfile.lock` holds locked/hashed combination of all dependencies (including sub-dependencies) of your project. This ensures repeatable, deterministic builds. You never manage this file by hand, as Pipenv takes care of it.
     
+    - You may install project's dependencies via `Pipfile` (building from the latest allowed versions of packages) or `Pipfile.lock` (making build deterministic).
+    
+    - Pipfile with the packages necessary to run all the content of Big-Bang-py may be found in this repo's [Pipfile](https://bitbucket.org/rtbhouse/big-bang-py/src/master/Pipfile) 
+    
     - Essential commands:
     
         - **`shell`: spawns a shell with the virtualenv activated. If a `.env` file is present in your project, shell will automatically load it for you.**

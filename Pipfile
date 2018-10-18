@@ -4,10 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+invoke = "*"
 python-dotenv = "*"
 
 [dev-packages]
-invoke = "*"
+isort = "*"
+mccabe = "*"
+pytest = "*"
+yapf = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+pytest-socket = "*"
+pytest-sugar = "*"
 
 [requires]
 python_version = "3.7"
