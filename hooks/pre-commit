@@ -65,13 +65,13 @@ if __name__ == '__main__':
     print('##################################')
     print('')
     mccabe_result_obj = subprocess.run(['python', 'run_mccabe.py', '7'], capture_output=True)
-    mccabe_result_str = mccabe_result_obj.stdout.decode()
-    mccabe_result_lines_num = len(mccabe_result_str.split('\n')[:-1])
+    mccabe_result_stdout = mccabe_result_obj.stdout.decode()
+    mccabe_result_lines_num = len(mccabe_result_stdout.rstrip('\n').split('\n'))
     if mccabe_result_lines_num == 1:
-        print('McCabe cyclomatic complexity is below threshold for every piece of code => OK!')
+        print('Metric below threshold for every section of code => OK!')
         print('')
     else:
-        print(mccabe_result_str)
+        print(mccabe_result_stdout)
         print(
             f'Code is over-complex! Check McCabe cyclomatic complexity output. '
             f'=> aborting commit!'
