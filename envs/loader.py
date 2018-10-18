@@ -1,7 +1,8 @@
 import os
-from pathlib import Path
 
 from dotenv import load_dotenv
+
+from constants import PROJECT_ROOT
 
 
 def load_envs() -> None:
@@ -12,9 +13,8 @@ def load_envs() -> None:
     `pipenv run`, which automatically load ENVs from `$PROJECT_ROOT/.env` file:
     https://github.com/pypa/pipenv/blob/master/docs/advanced.rst#-automatic-loading-of-env
     """
-    project_root = Path(__file__).parent.parent
     env_file_name = os.environ['ENV_FILE_NAME']
-    env_file_path = project_root / 'envs' / env_file_name
+    env_file_path = PROJECT_ROOT / 'envs' / env_file_name
     load_dotenv(env_file_path, override=True)
     # Set below ENV for easy access in logging, debugging etc.
     os.environ['ENV_FILE_PATH'] = str(env_file_path)
