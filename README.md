@@ -1,30 +1,35 @@
 ## TL;DR Checklist
 
-- Use [Python 3.7](https://docs.python.org/3/whatsnew/3.7.html).
+- Python:
 
-- Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
-
-- Store config (credentials, secrets, etc.) in [ENVs](https://12factor.net/config).
-
-- Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
-
-- Format Python files with [YAPF](https://github.com/google/yapf).
-
-- Sort Python imports with [Isort](https://github.com/timothycrosley/isort).
-
-- Scan code complexity by calling `run-mccabe.py`.
-
-- Use [pytest](https://docs.pytest.org/en/latest/) as Python test framework.
+    - Use [Python 3.7](https://docs.python.org/3/whatsnew/3.7.html).
+    
+    - Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
+    
+    - Format source files with [YAPF](https://github.com/google/yapf).
+    
+    - Sort imports with [Isort](https://github.com/timothycrosley/isort).
+    
+    - Scan code complexity by calling `run-mccabe.py`.
+    
+    - Use [pytest](https://docs.pytest.org/en/latest/) as test framework.
 
 - Git:
 
     - Use [.gitignore](https://git-scm.com/docs/gitignore).
     
     - Install [pre-commit Git hook](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit).
+
+- Stuff importante:
+
+    - Store config (credentials, secrets, etc.) in [ENVs](https://12factor.net/config).
     
+    - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
+
+
 ## Initialization & Update
 
-- To initilize Big-Bang-py, run [start_big_bang.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/start_big_bang.py) script in the root of your project.
+- To initialize Big-Bang-py, run [start_big_bang.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/start_big_bang.py) script in the root of your project.
 
     - Requirements:
         
@@ -80,53 +85,6 @@
         - `check`: **checks for security vulnerabilities** and asserts that PEP 508 requirements are being met by the current environment.
 
 - You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
-
-
-## Store config in ENVs
-
-- **The [Twelve-Factor App](https://12factor.net/config) stores config in environment variables.**
-
-    - Note that this definition of 'config' does not include internal application config, such as Django or Flask knobs & settings. This type of config does not vary between deploys, nor contains sensitive credentials, so is best done in the code.
-
-- **A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment without compromising any secrets or credentials.**
-
-- Usually there are multiple ENV files, e.g. separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
-
-    - An example is present in the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. 
-    
-    - You can find there ENVs loader using [python-dotenv](https://github.com/theskumar/python-dotenv).
-
-
-## Invoke - Task Management & Command Execution
-
-- It is recommended to **turn into a task every project related shell command** which will be called more than a couple of times and is not super-common (like `ls` with basic flags).
-
-- **Manage and execute those project tasks via [Invoke](http://www.pyinvoke.org).**
-
-- You can easily replace `Makefiles` and similar tools as Invoke is dead simple.
-
-- Invoke tasks are called by typing in the shell `invoke *task-name*`
-
-- Invoke tasks are normal Python functions organised in `tasks.py` file.
-
-- Docstrings of Invoke tasks functions are neatly converted into classic command line tool help:
-
-```
->>> invoke --list
-Available tasks:
-
-  task1      First line of docstring of task1.
-  task2      First line of docstring of task2.
-
-# Get full docstring of a particular task:  
->>> invoke --help *task-name*
-```
-
-- [Invoke tasks can be organised using namespaces](http://docs.pyinvoke.org/en/1.2/getting-started.html#creating-namespaces). Then, for instance, you can call server tasks like `jenkins.deploy`/`jenkins.logs` or organise job-related tasks like `job.start`/`job.stop`.
-
-- You may find examples of tasks in this repo's [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).
-
-- [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid, so it is recommended get familiar with it. 
 
 
 ## YAPF - Python Files Formatter
@@ -234,6 +192,53 @@ Available tasks:
     
     - [Python Testing with pytest: Simple, Rapid, Effective, and Scalable](https://www.amazon.com/Python-Testing-pytest-Effective-Scalable/dp/1680502409)
     
+
+## Store config in ENVs
+
+- **The [Twelve-Factor App](https://12factor.net/config) stores config in environment variables.**
+
+    - Note that this definition of 'config' does not include internal application config, such as Django or Flask knobs & settings. This type of config does not vary between deploys, nor contains sensitive credentials, so is best done in the code.
+
+- **A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment without compromising any secrets or credentials.**
+
+- Usually there are multiple ENV files, e.g. separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
+
+    - An example is present in the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. 
+    
+    - You can find there ENVs loader using [python-dotenv](https://github.com/theskumar/python-dotenv).
+
+
+## Invoke - Task Management & Command Execution
+
+- It is recommended to **turn into a task every project related shell command** which will be called more than a couple of times and is not super-common (like `ls` with basic flags).
+
+- **Manage and execute those project tasks via [Invoke](http://www.pyinvoke.org).**
+
+- You can easily replace `Makefiles` and similar tools as Invoke is dead simple.
+
+- Invoke tasks are called by typing in the shell `invoke *task-name*`
+
+- Invoke tasks are normal Python functions organised in `tasks.py` file.
+
+- Docstrings of Invoke tasks functions are neatly converted into classic command line tool help:
+
+```
+>>> invoke --list
+Available tasks:
+
+  task1      First line of docstring of task1.
+  task2      First line of docstring of task2.
+
+# Get full docstring of a particular task:  
+>>> invoke --help *task-name*
+```
+
+- [Invoke tasks can be organised using namespaces](http://docs.pyinvoke.org/en/1.2/getting-started.html#creating-namespaces). Then, for instance, you can call server tasks like `jenkins.deploy`/`jenkins.logs` or organise job-related tasks like `job.start`/`job.stop`.
+
+- You may find examples of tasks in this repo's [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).
+
+- [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid, so it is recommended get familiar with it. 
+
 
 ## .gitignore
 
