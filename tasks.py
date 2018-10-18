@@ -41,24 +41,28 @@ def linters(c):
     print('')
 
 
-@task
-def setup_big_bang_py(c):
+@task(post=[install_precommit])
+def update_big_bang_files(c):
     """
-    Setup Big-Bang-py files and dirs.
+    Update selected files (and dirs) based on the local clone of Big-Bang-py.
 
-    In fact, copy their version from the local clone of repo Big-Bang-py
-    (https://bitbucket.org/rtbhouse/big-bang-py).
+    Repo: https://bitbucket.org/rtbhouse/big-bang-py
     """
     check_if_big_bang_py_dir_env_exists()
     copy_from_big_bang_py_to_local_dir(
         c,
         file_or_dir_names=[
+            # dirs
+            'envs',
+            'hooks',
+            'tests',
+            # files
+            '.gitignore',
             '.isort.cfg',
             '.style.yapf',
-            'envs',
+            'Pipfile',
             'pytest.ini',
             'run_mccabe.py',
-            'tasks.py',
         ]
     )
 
@@ -66,8 +70,7 @@ def setup_big_bang_py(c):
 @task
 def tests(c):
     """Run pytests with coverage report."""
-
-    c.run('python -m pytest --cov=src --cov-branch', pty=True)
+    c.run('python -m pytest --cov=src --cov=envs --cov-branch', pty=True)
 
 
 def check_if_big_bang_py_dir_env_exists():

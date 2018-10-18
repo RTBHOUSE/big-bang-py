@@ -8,8 +8,6 @@
 
 - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
 
-    - **Setup Big-Bang-py files and dirs by invoking task [setup_big_bang_py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).**
-
 - Format Python files with [YAPF](https://github.com/google/yapf).
 
 - Sort Python imports with [Isort](https://github.com/timothycrosley/isort).
@@ -22,8 +20,21 @@
 
     - Use [.gitignore](https://git-scm.com/docs/gitignore).
     
-    - Install pre-commit githook.
+    - Install [pre-commit Git hook](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit).
+    
+## Initialization & Update
 
+- To initilize Big-Bang-py, run [start_big_bang.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/start_big_bang.py) script in the root of your project.
+
+    - Requirements:
+        
+        - Pipenv.
+    
+        - `BIG_BANG_PY_DIR` ENV holding full path to the local copy of [Big-Bang-py](https://bitbucket.org/rtbhouse/big-bang-py).
+        
+
+- If you wish to simply update Big-Bang-py files, adjust & run task `update_big_bang_files` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).
+    
 
 ## Python version
 
