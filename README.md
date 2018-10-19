@@ -26,9 +26,11 @@
     
     - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
     
-    - You should [log](https://realpython.com/python-logging/). No excuses.
+    - You should [log](https://realpython.com/python-logging/).
     
-    - You should have README. So have it.
+    - You should maintain README.
+    
+    - Run Continuous Integration on your hosting service for version control.
 
 
 ## Initialization & Update
@@ -312,3 +314,22 @@ Available tasks:
 - If you want to get inspired, [Awesome README](https://github.com/matiassingers/awesome-readme#articles) is a nice place dig.
 
 - The recommended format of README is [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). It is simple, powerful & popular, making it a perfect choice.
+
+
+## Continuous Integration - Kill Bugs Fast
+
+- Volumes have been written about what is and how to do Continuous Integration (along with Continuous Delivery and Deployment). But the most important element of it all is to **verify each check-in by an automated tool in order to detect problems early.**
+
+- **In the short, medium and long-term CI will save you tons of blood & tears. You will also sleep better at night.**
+
+    - Keeping it more serious, CI will lift a lot of mental burden from your head. You cannot assume that every contributor has correctly configured pre-commit Git hook. You cannot assume everyone will remember to test and lint. You cannot even trust yourself, because sooner or later you will also forget. That is why you hire CI, to have your project's back.
+
+- **For the above and many other reasons, always run CI on your hosting service for version control** (GitHub, GitLab, Bitbucket, etc.).
+
+- There are numerous CI tools, both closely related to your hosting service (like Bitbucket Pipelines or GitLab CI/CD) as well as platform-independent ones (like Jenkins or Circle CI). Choose whatever floats your boat.
+
+- **Given what to check during CI, at least run the tests to double-check they pass.** Some other ideas:
+
+    - Iron the new code with your linters of choice.
+    
+    - Test if the project still builds correctly.
