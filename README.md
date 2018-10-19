@@ -1,4 +1,4 @@
-## 💫 Where Python Projects Are Born 💫
+# Big-Bang-py
 
 + Big-Bang-py holds opinionated best practices, scripts & configs to template your next Python project.
 
@@ -72,14 +72,14 @@
     
         - `BIG_BANG_PY_DIR` ENV holding full path to the local copy of Big-Bang-py.
 
-- If you wish to simply update Big-Bang-py files, adjust & run task `update_big_bang_files` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py).
+- If you wish to simply update some of the files, adjust Invoke task `update_big_bang_files` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) & run it.
     
 
 ## Python version
 
 - **It is recommended to use Python 3.7.**
 
-- There is a nice summary of new features on [Real Python](https://realpython.com/python37-new-features). More detailed description can be found in [official docs](https://docs.python.org/3/whatsnew/3.7.html).
+- There is a nice summary of new features on [Real Python](https://realpython.com/python37-new-features). More detailed description can be found in the [official documentation](https://docs.python.org/3/whatsnew/3.7.html).
 
 - To name some notable additions:
 
@@ -87,51 +87,57 @@
     
     - [Typing Forward Reference](https://realpython.com/python37-new-features/#typing-enhancements) makes type hints even more programmer-friendly.
 
-    - The `asyncio` module has received many [new features, usability and performance improvements](https://docs.python.org/3/whatsnew/3.7.html#asyncio). For instance,  new `asyncio.run()` runs coroutine in automatically created and destroyed event loop.
+    - The `asyncio` module has received many [new features along with usability and performance improvements](https://docs.python.org/3/whatsnew/3.7.html#asyncio). For instance,  new `asyncio.run()` calls coroutine in automatically created and destroyed event loop.
     
-- If for some reason you use previous version of Python (especially 3.6), it is possible to backport some of the new features e.g. [Data Classes](https://github.com/ericvsmith/dataclasses).
+- Nonetheless, if you still use previous version of Python (especially 3.6), it is possible to backport some of the new features e.g. [Data Classes](https://github.com/ericvsmith/dataclasses).
 
 
 ## Pipenv - Python Package Manager
 
-- **[Pipenv](https://pipenv.readthedocs.io/en/latest) consolidates `pip` & `virtualenv` while offering powerful features. Use it to manage Python dependencies.** 
+- **Use [Pipenv](https://pipenv.readthedocs.io/en/latest) to manage Python dependencies.**
+  
+- Pipenv consolidates `pip` & `virtualenv` while offering powerful features:
 
-- Pipenv automatically creates and manages virtual environment.
-
-- You specify project packages in `Pipfile`. Because those are abstract dependency declarations, **you declare only the packages you need**. Sub-dependencies are taken care of by Pipenv.
-
--  `Pipfile.lock` uses hashes to lock all of the dependencies (i.e. including sub-dependencies). This ensures repeatable, deterministic builds. You never manage this file by hand, leaving the matter for Pipenv.
-
-- You install project dependencies using `Pipfile` (building from the latest allowed versions of packages) or `Pipfile.lock` (making build deterministic).
-
-    - **Pipfile with the packages necessary to run all the content of Big-Bang-py may be found in this repo's [Pipfile](https://bitbucket.org/rtbhouse/big-bang-py/src/master/Pipfile).**
+    - Pipenv automatically creates and manages virtual environment.
     
+    - Install project dependencies using `Pipfile` (building from the latest allowed versions of packages) or `Pipfile.lock` (making build deterministic):
+    
+        - **Specify project packages in `Pipfile`. Because those are abstract dependency declarations, you declare only the packages you need**. Sub-dependencies are taken care of by Pipenv.
+        
+        - `Pipfile.lock` uses hashes to lock all of the dependencies (including sub-dependencies). This ensures repeatable, deterministic builds. You never manage this file by hand, leaving the matter for Pipenv.
+   
 - Essential commands:
 
-    - **`shell` - spawns a shell with the virtualenv activated. If `.env` file is present in your project root, shell will automatically load it for you.**
+    - `install` - installs provided packages and adds them to Pipfile, or (if no packages are given), installs all packages from Pipfile.
+
+    - `sync` - installs all packages specified in Pipfile.lock (deterministic build!)
     
-    - `run`: runs a given command from the virtualenv, with any arguments forwarded (e.g. `$ pipenv run python`). If `.env` file is present in your project root, shell will automatically load it for you.
+    - `shell` - spawns a shell with the virtualenv activated. If `.env` file is present in your project root, shell will automatically load it for you.
     
-    - `graph`: shows a dependency graph of the installed dependencies.
+    - `run` - runs a given command from the virtualenv, with any arguments forwarded (e.g. `$ pipenv run python`). If `.env` file is present in your project root, shell will automatically load it for you.
     
-    - `check`: **checks for security vulnerabilities** and asserts that PEP 508 requirements are being met by the current environment.
+    - `graph` - shows a dependency graph of the installed dependencies.
+    
+    - `check` - most importantly, checks for security vulnerabilities.
 
 - You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
+
+- **Pipfile with the packages necessary to run all the content of Big-Bang-py may be found in this repo's [Pipfile](https://bitbucket.org/rtbhouse/big-bang-py/src/master/Pipfile).**
 
 
 ## YAPF - Python Files Formatter
 
 - **[YAPF](https://github.com/google/yapf) is a Python files formatter with the ultimate goal of producing code as good as the code that a programmer would write if they were following a style guide.**
 
-- The formatting style used by YAPF is configurable. Specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file in the root of your project, so YAPF can automatically pick this config up.
+- The formatting style used by YAPF is configurable. Specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file at the root of your project, so YAPF can automatically pick this config up.
 
-- You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) in the root of this repo.
+    - You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) at the root of this repo.
 
-- It is recommended to include YAPF in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) in the root of this repo.
+- It is recommended to include YAPF in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) at the root of this repo.
 
 - Survival tips:
     
-    - If you leave trailing comma in a collection (list, function parameters, etc.) YAPF will force the collection to break giving one element per line.
+    - If you leave trailing comma in a collection (list, function parameters, etc.) YAPF will force the collection to break, giving one element per line.
     
     - From time to time you WILL see weirdly formatted code as YAPF is not perfect. There are at least two major occurrences:
  
@@ -144,30 +150,30 @@
 
 ## Isort - Python Imports Sorter
 
-- **[Isort](https://github.com/timothycrosley/isort) sorts Python imports alphabetically and separates them into defined sections.**
+- **[Isort](https://github.com/timothycrosley/isort) automatically sorts Python imports in alphabetical order as well as separates them into defined sections.**
 
-- There are several ways to configure Isort's behavior. Full reference of every setting can be found [here](https://github.com/timothycrosley/isort/wiki/isort-Settings#full-reference-of-isort-settings).
+- There are several knobs configuring Isort's behavior. Full reference of settings can be found [here](https://github.com/timothycrosley/isort/wiki/isort-Settings#full-reference-of-isort-settings).
 
 - You can specify project level configuration simply by placing a `.isort.cfg` file at the root of your project.
 
-- You may find pre-configured [.isort.cfg](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.isort.cfg) in the root of this repo.
+    - You may find pre-configured [.isort.cfg](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.isort.cfg) at the root of this repo.
     
-- It is recommended to include Isort in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) in the root of this repo.
+- It is recommended to include Isort in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) at the root of this repo.
 
 - To manage edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).
 
 
 ## McCabe - Code Complexity Checker
 
-- [mccabe](https://github.com/pycqa/mccabe) library automatically detects over-complex code based on cyclomatic complexity (for curious, consult [tutorialspoint](https://www.tutorialspoint.com/software_testing_dictionary/cyclomatic_complexity.htm) and [Wikipedia](https://en.wikipedia.org/wiki/Cyclomatic_complexity)).
+- [mccabe](https://github.com/pycqa/mccabe) library automatically detects over-complex code basing on cyclomatic complexity (for curious, consult [tutorialspoint](https://www.tutorialspoint.com/software_testing_dictionary/cyclomatic_complexity.htm) and [Wikipedia](https://en.wikipedia.org/wiki/Cyclomatic_complexity)).
 
-- Cyclomatic complexity is roughly equivalent to one plus the number of loops and if statements. The simple interpretation is that it is an upper bound for the number of test cases required to obtain branch coverage of the code. So, in the context of testing, cyclomatic complexity can be used to estimate the required effort for writing tests.
+- Cyclomatic complexity is roughly equivalent to one plus the number of loops and if statements. The simple interpretation is that it shows an upper bound for the number of test cases required to obtain branch coverage of the code. So, in the context of testing, such metric can be used to estimate the required effort for writing tests.
 
 - Code with high cyclomatic complexity (usually assumed as 10+) is likely to be difficult to understand and therefore have a higher probability of containing defects.
     
-- It is recommended to include McCabe in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) in the root of this repo.
+- It is recommended to include McCabe in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) and [pre-commit](https://bitbucket.org/rtbhouse/big-bang-py/src/master/hooks/pre-commit) at the root of this repo.
 
-    - Cut-off complexity is currently assumed to be 7. However, this number should be adjusted to reflect your experience and project needs.
+    - Cut-off complexity in Invoke task and pre-commit are arbitrarily assumed to be 7. However, this number should be adjusted to reflect your experience and project needs.
 
 
 ## Pytest - Python Test Framework
@@ -176,7 +182,7 @@
 
     - It is simple & programmer-friendly.
     
-    - Offers great depth and complexity, but only if necessary.
+    - It offers great depth and complexity, but only if necessary.
 
 - Major features:
 
@@ -184,11 +190,11 @@
     
     - Informative test failures.
     
-    - Less verbose (assert vs. self.assertEqual etc.).
+    - Less verbose (plain `assert` vs. `self.assertEqual`, `self.assertFoo`, `self.assertBar` etc.)
      
     - Classes are not required.
      
-    - A far more convenient way to write setup/teardown functions with fixtures.
+    - A far more convenient way to write setup & teardown functions with fixtures.
      
     - Parameterized tests.
      
@@ -202,7 +208,7 @@
     
     - Can run unittest and nose test suites out of the box.
     
-- You can easily change command line options defaults by defining them in a configuration file called `pytest.ini`. You can find [an example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pytest.ini) in the root of this repo.
+- You can easily set command line default flags by defining them in a configuration file called `pytest.ini`. You can find [an example](https://bitbucket.org/rtbhouse/big-bang-py/src/master/pytest.ini) at the root of this repo.
 
 - Recommended plugins:
 
@@ -233,7 +239,7 @@
 
 - Usually there are multiple ENV files e.g. separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
 
-    - An example is present in the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. 
+    - An example is present at the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. 
     
     - You can also find there ENVs loader based on [python-dotenv](https://github.com/theskumar/python-dotenv).
 
