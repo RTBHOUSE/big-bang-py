@@ -27,6 +27,8 @@
     - Manage and execute command line tasks via [Invoke](http://www.pyinvoke.org).
     
     - You should [log](https://realpython.com/python-logging/). No excuses.
+    
+    - You should have README. So have it.
 
 
 ## Initialization & Update
@@ -291,3 +293,22 @@ Available tasks:
 - Learn more about logging in digestible form on [Real Python](https://realpython.com/python-logging/). 
 
     - If you are an adventurous programmer that knows no fear, there is [official documentation](https://docs.python.org/3/library/logging.html) waiting out there. Bear in mind that because of this document, and its unnecessary complexity, a lot of people were scared off to the Sad Kingdom of Prints.
+
+
+## README - Gateway to your Code
+
+- **You should have README. So write it up!**
+
+- README is not only the Golden Gate to open source project. First and foremost, it is a lantern for your fellow programmers and for your future self. Everybody loves good README and so should you.
+
+- There is no obvious consensus regarding what README should contain. However, it seems that a good README should have at least three below sections:
+
+    - **What, why and how** i.e. What is the project about? Why is it needed? And how does it solve the problem?
+    
+    - How to use the code? (this section is sometimes minified to 'Getting started')
+    
+    - How to install the code and test if everything is OK.
+    
+- If you want to get inspired, [Awesome README](https://github.com/matiassingers/awesome-readme#articles) is a nice place dig.
+
+- The recommended format of README is [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). It is simple, powerful & popular, making it a perfect choice.
