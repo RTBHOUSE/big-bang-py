@@ -33,6 +33,27 @@
     - Run Continuous Integration on your hosting service for version control.
 
 
+## Table of Contents
+
+* [Initialization &amp; Update](#initialization--update)
+* [Python version](#python-version)
+* [Pipenv - Python Package Manager](#pipenv---python-package-manager)
+* [YAPF - Python Files Formatter](#yapf---python-files-formatter)
+* [Isort - Python Imports Sorter](#isort---python-imports-sorter)
+* [McCabe - Code Complexity Checker](#mccabe---code-complexity-checker)
+* [Pytest - Python Test Framework](#pytest---python-test-framework)
+* [Store config in ENVs](#store-config-in-envs)
+* [Invoke - Task Management &amp; Command Execution](#invoke---task-management--command-execution)
+* [.gitignore](#gitignore)
+* [Pre-commit Git Hook](#pre-commit-git-hook)
+* [Logging Is A Programmer's Best Friend](#logging-is-a-programmers-best-friend)
+* [README - Gateway to your Code](#readme---gateway-to-your-code)
+* [Continuous Integration - Kill Bugs Fast](#continuous-integration---kill-bugs-fast)
+
+###### ToC generated with [github-markdown-toc](https://github.com/ekalinin/github-markdown-toc).
+
+
+
 ## Initialization & Update
 
 - To initialize Big-Bang-py in your project, run [start_big_bang.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/start_big_bang.py) script in the target directory.
