@@ -6,21 +6,18 @@ from invoke import task
 @task
 def coverage(c):
     """Open refreshed coverage report in a browser."""
-
     c.run('coverage html && open htmlcov/index.html', pty=True)
 
 
 @task
 def install_precommit(c):
     """Install pre-commit githook."""
-
     c.run('cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit', pty=True)
 
 
 @task
 def linters(c):
     """Lint source code using YAPF, Isort and McCabe."""
-
     print('')
     print('#######################################')
     print('# YAPF - Yet Another Python Formatter #')

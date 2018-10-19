@@ -1,3 +1,14 @@
+## 💫 Where Python Projects Are Born 💫
+
++ Big-Bang-py holds opinionated best practices, scripts & configs to template your next Python project.
+
++ The content of this repo is based on the research, experience and pure opinions of the authors.
+
++ The goal is to gather the sweetest & most impactful nuggets of Python projects wisdom and make them accessible from one single place. 
+
++ Hopefully, Big-bang-py gets you inspired about how to code your awesome projects even faster and better.
+
+
 ## TL;DR Checklist
 
 - Python:
@@ -30,12 +41,12 @@
     
     - You should maintain README.
     
-    - Run Continuous Integration on your hosting service for version control.
+    - Configure & use Continuous Integration.
 
 
 ## Table of Contents
 
-* [Initialization &amp; Update](#initialization--update)
+* [Initialization & Update](#initialization--update)
 * [Python version](#python-version)
 * [Pipenv - Python Package Manager](#pipenv---python-package-manager)
 * [YAPF - Python Files Formatter](#yapf---python-files-formatter)
@@ -49,9 +60,6 @@
 * [Logging Is A Programmer's Best Friend](#logging-is-a-programmers-best-friend)
 * [README - Gateway to your Code](#readme---gateway-to-your-code)
 * [Continuous Integration - Kill Bugs Fast](#continuous-integration---kill-bugs-fast)
-
-###### ToC generated with [github-markdown-toc](https://github.com/ekalinin/github-markdown-toc).
-
 
 
 ## Initialization & Update
