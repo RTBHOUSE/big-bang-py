@@ -4,9 +4,9 @@
 
 + The content of this repo is based on the research, experience and pure opinions of the authors.
 
-+ The goal is to gather the sweetest & most impactful nuggets of Python projects wisdom and make them accessible from one single place. 
++ The goal is to gather the sweetest & most impactful nuggets of Python projects wisdom and make them accessible from a single place. 
 
-+ Hopefully, Big-bang-py gets you inspired about how to code your awesome projects even faster and better.
++ Hopefully, Big-bang-py will inspire you to code awesome projects even faster and better.
 
 
 ## TL;DR Checklist
@@ -51,10 +51,10 @@
 * [Pipenv - Python Package Manager](#pipenv---python-package-manager)
 * [YAPF - Python Files Formatter](#yapf---python-files-formatter)
 * [Isort - Python Imports Sorter](#isort---python-imports-sorter)
-* [McCabe - Code Complexity Checker](#mccabe---code-complexity-checker)
+* [McCabe - Python Code Complexity Checker](#mccabe---python-code-complexity-checker)
 * [Pytest - Python Test Framework](#pytest---python-test-framework)
 * [Store config in ENVs](#store-config-in-envs)
-* [Invoke - Task Management &amp; Command Execution](#invoke---task-management--command-execution)
+* [Invoke - Manage & Execute Tasks](#invoke---manage--execute-tasks)
 * [.gitignore](#gitignore)
 * [Pre-commit Git Hook](#pre-commit-git-hook)
 * [Logging Is A Programmer's Best Friend](#logging-is-a-programmers-best-friend)
@@ -96,21 +96,21 @@
 
 - **Use [Pipenv](https://pipenv.readthedocs.io/en/latest) to manage Python dependencies.**
   
-- Pipenv consolidates `pip` & `virtualenv` while offering powerful features:
+- Pipenv consolidates `pip` & `virtualenv` while offering powerful features. Among others:
 
-    - Pipenv automatically creates and manages virtual environment.
+    - Automatically creates and manages virtual environment.
     
-    - Install project dependencies using `Pipfile` (building from the latest allowed versions of packages) or `Pipfile.lock` (making build deterministic):
+    - Installs project dependencies using `Pipfile` (building from the latest allowed versions of packages) or `Pipfile.lock` (making build deterministic):
     
-        - **Specify project packages in `Pipfile`. Because those are abstract dependency declarations, you declare only the packages you need**. Sub-dependencies are taken care of by Pipenv.
+        - Specify project packages in `Pipfile`. Because those are abstract dependency declarations, you declare only the packages you need. Sub-dependencies are taken care of by Pipenv.
         
         - `Pipfile.lock` uses hashes to lock all of the dependencies (including sub-dependencies). This ensures repeatable, deterministic builds. You never manage this file by hand, leaving the matter for Pipenv.
    
 - Essential commands:
 
-    - `install` - installs provided packages and adds them to Pipfile, or (if no packages are given), installs all packages from Pipfile.
+    - `install` - installs provided packages and adds them to Pipfile. If no packages are given, installs all packages from Pipfile.
 
-    - `sync` - installs all packages specified in Pipfile.lock (deterministic build!)
+    - `sync` - deterministic build! Installs all packages specified in Pipfile.lock.
     
     - `shell` - spawns a shell with the virtualenv activated. If `.env` file is present in your project root, shell will automatically load it for you.
     
@@ -118,7 +118,7 @@
     
     - `graph` - shows a dependency graph of the installed dependencies.
     
-    - `check` - most importantly, checks for security vulnerabilities.
+    - `check` - checks for security vulnerabilities (and PEP 508 requirements).
 
 - You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
 
@@ -129,7 +129,7 @@
 
 - **[YAPF](https://github.com/google/yapf) is a Python files formatter with the ultimate goal of producing code as good as the code that a programmer would write if they were following a style guide.**
 
-- The formatting style used by YAPF is configurable. Specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file at the root of your project, so YAPF can automatically pick this config up.
+- The formatting style used by YAPF is configurable, where specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file at the root of your project, so YAPF can automatically pick this config up.
 
     - You may find pre-configured [.style.yapf](https://bitbucket.org/rtbhouse/big-bang-py/src/master/.style.yapf) at the root of this repo.
 
@@ -163,11 +163,11 @@
 - To manage edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).
 
 
-## McCabe - Code Complexity Checker
+## McCabe - Python Code Complexity Checker
 
 - [mccabe](https://github.com/pycqa/mccabe) library automatically detects over-complex code basing on cyclomatic complexity (for curious, consult [tutorialspoint](https://www.tutorialspoint.com/software_testing_dictionary/cyclomatic_complexity.htm) and [Wikipedia](https://en.wikipedia.org/wiki/Cyclomatic_complexity)).
 
-- Cyclomatic complexity is roughly equivalent to one plus the number of loops and if statements. The simple interpretation is that it shows an upper bound for the number of test cases required to obtain branch coverage of the code. So, in the context of testing, such metric can be used to estimate the required effort for writing tests.
+- Cyclomatic complexity is roughly equivalent to one plus the number of loops and if statements. The simple interpretation is that it shows an upper bound for the number of test cases required to obtain branch coverage of the code, so indicates effort required for writing tests.
 
 - Code with high cyclomatic complexity (usually assumed as 10+) is likely to be difficult to understand and therefore have a higher probability of containing defects.
     
@@ -190,7 +190,7 @@
     
     - Informative test failures.
     
-    - Less verbose (plain `assert` vs. `self.assertEqual`, `self.assertFoo`, `self.assertBar` etc.)
+    - Less verbose (plain `assert` vs. `self.assertEqual`, `self.assertFoo`, `self.assertBar`, etc.)
      
     - Classes are not required.
      
@@ -237,14 +237,12 @@
 
 - **A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment without compromising any secrets or credentials.**
 
-- Usually there are multiple ENV files e.g. separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
+- Usually there are multiple ENV files, like separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
 
-    - An example is present at the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. 
-    
-    - You can also find there ENVs loader based on [python-dotenv](https://github.com/theskumar/python-dotenv).
+    - An example of such organisation is present at the root of this repo in [/envs](https://bitbucket.org/rtbhouse/big-bang-py/src/master/envs/) folder. You can also find there ENVs loader based on [python-dotenv](https://github.com/theskumar/python-dotenv).
 
 
-## Invoke - Task Management & Command Execution
+## Invoke - Manage & Execute Tasks
 
 - It is recommended to **turn into a task every project related shell command** which will be called more than a couple of times and is not super-common (like `ls` with basic flags).
 
@@ -312,7 +310,7 @@ Available tasks:
 
     - Logs saved in $PROJECT_ROOT/logs are processed by RotatingFileHandler. Therefore there is no risk that logs will grow indefinitely.
 
-    - Get even more inspired with the below snippet:
+    - How to log:
     
         ```python
         # Load logging config
@@ -344,16 +342,16 @@ Available tasks:
     
     - How to use the code? (this section is sometimes minified to 'Getting started')
     
-    - How to install the code and test if everything is OK.
+    - How to install the code and test if everything is OK?
     
-- If you want to get inspired, [Awesome README](https://github.com/matiassingers/awesome-readme#articles) is a nice place dig.
+- If you want to get inspired, [Awesome README](https://github.com/matiassingers/awesome-readme#articles) is a nice place to dig.
 
-- The recommended format of README is [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). It is simple, powerful & popular, making it a perfect choice.
+- The recommended format of README is [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). It is simple, powerful and popular, making it a perfect choice.
 
 
 ## Continuous Integration - Kill Bugs Fast
 
-- Volumes have been written about what is and how to do Continuous Integration (along with Continuous Delivery and Deployment). But the most important element of it all is to **verify each check-in by an automated tool in order to detect problems early.**
+- Volumes have been written about what is and how to do Continuous Integration (along with Continuous Delivery and Deployment). Yet the absolute minimum every project must implement is to **verify each check-in by an automated tool in order to detect problems early.**
 
 - **In the short, medium and long-term CI will save you tons of blood & tears. You will also sleep better at night.**
 
