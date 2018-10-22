@@ -66,12 +66,8 @@
 
 - To initialize Big-Bang-py in your project, run [start_big_bang.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/start_big_bang.py) script in the target directory.
 
-    - Prerequisites:
-        
-        - Pipenv.
+    - Prerequisite: Pipenv
     
-        - `BIG_BANG_PY_DIR` ENV holding full path to the local copy of Big-Bang-py.
-
 - If you wish to simply update some of the files, adjust Invoke task `update_big_bang_files` in [tasks.py](https://bitbucket.org/rtbhouse/big-bang-py/src/master/tasks.py) & run it.
     
 
