@@ -1,4 +1,6 @@
-import os
+import random
+import shutil
+import string
 
 from invoke import task
 
@@ -43,34 +45,39 @@ def linters(c):
 @task(post=[install_precommit])
 def update_big_bang_files(c):
     """
-    Update selected files (and dirs) based on the local clone of Big-Bang-py.
+    Update selected files (including files in dirs) from Big-Bang-py repo.
 
-    Repo: https://bitbucket.org/rtbhouse/big-bang-py
+    Repo: https://github.com/rtbhouse/big-bang-py
     """
-    if 'BIG_BANG_PY_DIR' not in os.environ:
-        raise RuntimeError(
-            'Please setup `BIG_BANG_PY_DIR` ENV holding full path to the local '
-            'copy of Big-Bang-py (https://bitbucket.org/rtbhouse/big-bang-py).'
-        )
-    files_and_dirs = [
-        # dirs
-        'envs',
-        'hooks',
-        'src',
-        'tests',
-        # files
-        '.gitignore',
-        '.isort.cfg',
-        '.style.yapf',
-        'Pipfile',
-        'pytest.ini',
-        'run_mccabe.py',
-    ]
-    for asset in files_and_dirs:
-        c.run(f'cp -R $BIG_BANG_PY_DIR/{asset} .', pty=True)
+
+    big_bang_py_temp_dir = get_random_string(length=40)
+    try:
+        c.run(f'git clone git@github.com:rtbhouse/big-bang-py.git {big_bang_py_temp_dir}')
+        files_and_dirs_to_copy = [
+            # dirs
+            'envs',
+            'hooks',
+            'src',
+            'tests',
+            # files
+            '.gitignore',
+            '.isort.cfg',
+            '.style.yapf',
+            'Pipfile',
+            'pytest.ini',
+            'run_mccabe.py',
+        ]
+        for asset in files_and_dirs_to_copy:
+            c.run(f'cp -R {big_bang_py_temp_dir}/{asset} .', pty=True)
+    finally:
+        shutil.rmtree(big_bang_py_temp_dir)
 
 
 @task
 def tests(c):
     """Run pytests with coverage report."""
     c.run('python -m pytest --cov=src --cov=envs --cov-branch', pty=True)
+
+
+def get_random_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
