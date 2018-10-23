@@ -111,3 +111,4 @@ venv.bak/
 # Project
 *.env
 !test.env
+*.log
