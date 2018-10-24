@@ -29,7 +29,7 @@
 
     - Use [.gitignore](https://git-scm.com/docs/gitignore).
     
-    - Use [pre-commit Git hook](https://github.com/RTBHOUSE/big-bang-py/src/master/hooks/pre-commit).
+    - Use [pre-commit Git hook](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit).
 
 - Project:
 
@@ -64,11 +64,11 @@
 
 ## Initialization & Update
 
-- To initialize Big-Bang-py in your project, run [start_big_bang.py](https://github.com/RTBHOUSE/big-bang-py/src/master/start_big_bang.py) script in the target directory.
+- To initialize Big-Bang-py in your project, run [start_big_bang.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/start_big_bang.py) script in the target directory.
 
     - Prerequisite: Pipenv
     
-- If you wish to simply update some of the files, adjust Invoke task `update_big_bang_files` in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/src/master/tasks.py) & run it.
+- If you wish to simply update some of the files, adjust Invoke task `update_big_bang_files` in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) & run it.
     
 
 ## Python version
@@ -118,7 +118,7 @@
 
 - You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
 
-- **Pipfile with the packages necessary to run all the content of Big-Bang-py may be found in this repo's [Pipfile](https://github.com/RTBHOUSE/big-bang-py/src/master/Pipfile).**
+- **Pipfile with the packages necessary to run all the content of Big-Bang-py may be found in this repo's [Pipfile](https://github.com/RTBHOUSE/big-bang-py/tree/master/Pipfile).**
 
 
 ## YAPF - Python Files Formatter
@@ -127,9 +127,9 @@
 
 - The formatting style used by YAPF is configurable, where specific configuration can be pointed in a couple of ways. However, it is recommended to simply store it in a properly formatted `.style.yapf` file at the root of your project, so YAPF can automatically pick this config up.
 
-    - You may find pre-configured [.style.yapf](https://github.com/RTBHOUSE/big-bang-py/src/master/.style.yapf) at the root of this repo.
+    - You may find pre-configured [.style.yapf](https://github.com/RTBHOUSE/big-bang-py/tree/master/.style.yapf) at the root of this repo.
 
-- It is recommended to include YAPF in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/src/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/src/master/hooks/pre-commit) at the root of this repo.
+- It is recommended to include YAPF in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
 
 - Survival tips:
     
@@ -152,9 +152,9 @@
 
 - You can specify project level configuration simply by placing a `.isort.cfg` file at the root of your project.
 
-    - You may find pre-configured [.isort.cfg](https://github.com/RTBHOUSE/big-bang-py/src/master/.isort.cfg) at the root of this repo.
+    - You may find pre-configured [.isort.cfg](https://github.com/RTBHOUSE/big-bang-py/tree/master/.isort.cfg) at the root of this repo.
     
-- It is recommended to include Isort in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/src/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/src/master/hooks/pre-commit) at the root of this repo.
+- It is recommended to include Isort in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
 
 - To manage edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).
 
@@ -167,7 +167,7 @@
 
 - Code with high cyclomatic complexity (usually assumed as 10+) is likely to be difficult to understand and therefore have a higher probability of containing defects.
     
-- It is recommended to include McCabe in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/src/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/src/master/hooks/pre-commit) at the root of this repo.
+- It is recommended to include McCabe in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
 
     - Cut-off complexity in Invoke task and pre-commit are arbitrarily assumed to be 7. However, this number should be adjusted to reflect your experience and project needs.
 
@@ -204,7 +204,7 @@
     
     - Can run unittest and nose test suites out of the box.
     
-- You can easily set command line default flags by defining them in a configuration file called `pytest.ini`. You can find [an example](https://github.com/RTBHOUSE/big-bang-py/src/master/pytest.ini) at the root of this repo.
+- You can easily set command line default flags by defining them in a configuration file called `pytest.ini`. You can find [an example](https://github.com/RTBHOUSE/big-bang-py/tree/master/pytest.ini) at the root of this repo.
 
 - Recommended plugins:
 
@@ -235,7 +235,7 @@
 
 - Usually there are multiple ENV files, like separate versions for testing, devel, staging and production. It is recommended to organise those ENVs in one location. 
 
-    - An example of such organisation is present at the root of this repo in [/envs](https://github.com/RTBHOUSE/big-bang-py/src/master/envs/) folder. You can also find there ENVs loader based on [python-dotenv](https://github.com/theskumar/python-dotenv).
+    - An example of such organisation is present at the root of this repo in [/envs](https://github.com/RTBHOUSE/big-bang-py/tree/master/envs/) folder. You can also find there ENVs loader based on [python-dotenv](https://github.com/theskumar/python-dotenv).
 
 
 ## Invoke - Manage & Execute Tasks
@@ -265,7 +265,7 @@ Available tasks:
 
 - [Invoke tasks can be organised using namespaces](http://docs.pyinvoke.org/en/1.2/getting-started.html#creating-namespaces). Then, for instance, you can call server tasks like `jenkins.deploy`/`jenkins.logs` or organise job-related tasks like `job.start`/`job.stop`.
 
-- You may find examples of tasks in this repo's [tasks.py](https://github.com/RTBHOUSE/big-bang-py/src/master/tasks.py).
+- You may find examples of tasks in this repo's [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py).
 
 - [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid, so it is recommended to get familiar with it. 
 
@@ -278,7 +278,7 @@ Available tasks:
 
 - Alternatively, it is possible to generate .gitignore online using [gitignore.io](https://www.gitignore.io).
 
-- You may also find [example](https://github.com/RTBHOUSE/big-bang-py/src/master/.gitignore) of Python project .gitignore in this repo.
+- You may also find [example](https://github.com/RTBHOUSE/big-bang-py/tree/master/.gitignore) of Python project .gitignore in this repo.
 
 
 ## Pre-commit Git Hook
@@ -287,9 +287,9 @@ Available tasks:
 
 - It is a perfect opportunity to automatically run tests and linters, so your code is consistent, readable and works as intended.
 
-- You can find an example of pre-commit Git hook in [/hooks/pre-commit](https://github.com/RTBHOUSE/big-bang-py/src/master/hooks/pre-commit) of this repo.
+- You can find an example of pre-commit Git hook in [/hooks/pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) of this repo.
 
-    - `install_precommit` Invoke task in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/src/master/tasks.py)  takes your pre-commit Git Hook from `/hooks/pre-commit` and sets it up for you.
+    - `install_precommit` Invoke task in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py)  takes your pre-commit Git Hook from `/hooks/pre-commit` and sets it up for you.
 
 
 ## Logging Is A Programmer's Best Friend
@@ -300,7 +300,7 @@ Available tasks:
 
 - If done right, logging may literally save your day when real problems shred your beautiful code to pieces in production environment.
 
-- It can be tedious to configure the logging yourself. That is why in [/src/logging_config.py](https://github.com/RTBHOUSE/big-bang-py/src/master/src/logging_config.py) of this repo you can find pre-configured setup that is ready-to-go.
+- It can be tedious to configure the logging yourself. That is why in [/src/logging_config.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/src/logging_config.py) of this repo you can find pre-configured setup that is ready-to-go.
 
     - In proposed setup logs are streamed to stderr as well as saved in $PROJECT_ROOT/logs.
 
