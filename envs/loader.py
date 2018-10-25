@@ -7,7 +7,7 @@ from constants import PROJECT_ROOT
 
 def load_envs() -> None:
     """
-    Loads ENVs from $PROJECT_ROOT/envs/$ENV_FILE_NAME.
+    Load ENVs from $PROJECT_ROOT/envs/$ENV_FILE_NAME.
 
     One of the ways to preload `ENV_FILE_NAME` ENV is to use `pipenv shell` or
     `pipenv run`, which automatically load ENVs from `$PROJECT_ROOT/.env` file:

@@ -112,3 +112,4 @@ venv.bak/
 *.env
 !test.env
 *.log
+flake-report

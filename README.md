@@ -17,11 +17,11 @@
     
     - Manage dependencies using [Pipenv](https://pipenv.readthedocs.io/en/latest).
     
-    - Format source files with [YAPF](https://github.com/google/yapf).
-    
     - Sort imports with [Isort](https://github.com/timothycrosley/isort).
     
-    - Scan code complexity by calling `run-mccabe.py`.
+    - Format source files with [YAPF](https://github.com/google/yapf).
+    
+    - Lint code with [Flake8](https://github.com/PyCQA/flake8).
     
     - Use [pytest](https://docs.pytest.org/en/latest/) as test framework.
 
@@ -49,8 +49,9 @@
 * [Initialization & Update](#initialization--update)
 * [Python version](#python-version)
 * [Pipenv - Python Package Manager](#pipenv---python-package-manager)
-* [YAPF - Python Files Formatter](#yapf---python-files-formatter)
 * [Isort - Python Imports Sorter](#isort---python-imports-sorter)
+* [YAPF - Python Files Formatter](#yapf---python-files-formatter)
+* [Flake8 - Python Style Guide Enforcer](#flake8---python-style-guide-enforcer)
 * [McCabe - Python Code Complexity Checker](#mccabe---python-code-complexity-checker)
 * [Pytest - Python Test Framework](#pytest---python-test-framework)
 * [Store config in ENVs](#store-config-in-envs)
@@ -116,9 +117,24 @@
     
     - `check` - checks for security vulnerabilities (and PEP 508 requirements).
 
-- You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/).
+- You can educate yourself further by reading a [Real Python's guide](https://realpython.com/pipenv-guide). It is also recommended to go through [the official documentation](https://pipenv.readthedocs.io/en/latest/#further-documentation-guides).
 
 - **Pipfile with the packages necessary to run all the content of Big-Bang-py may be found in this repo's [Pipfile](https://github.com/RTBHOUSE/big-bang-py/tree/master/Pipfile).**
+
+
+## Isort - Python Imports Sorter
+
+- **[Isort](https://github.com/timothycrosley/isort) automatically sorts Python imports in alphabetical order as well as separates them into defined sections.**
+
+- There are several knobs configuring Isort's behavior. Full reference of settings can be found [here](https://github.com/timothycrosley/isort/wiki/isort-Settings#full-reference-of-isort-settings).
+
+- You can specify project level configuration simply by placing a `.isort.cfg` file at the root of your project.
+
+    - You may find pre-configured [.isort.cfg](https://github.com/RTBHOUSE/big-bang-py/tree/master/.isort.cfg) at the root of this repo.
+    
+- It is recommended to include Isort in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
+
+- To manage edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).
 
 
 ## YAPF - Python Files Formatter
@@ -142,21 +158,29 @@
         - Complex Comprehensions - YAPF assumes that only comprehension that exceed column limit are complex enough to be formatted... This issue is brought to the attention of both YAPF authors (see issue on [Github](https://github.com/google/yapf/issues/628)) and other programmers (see posts on [Stack Overflow](https://stackoverflow.com/questions/52558919/is-there-a-way-to-force-yapf-to-always-split-fold-comprehensions) and [Reddit](https://www.reddit.com/r/Python/comments/9mov4r/is_there_a_way_to_force_yapf_to_always_splitfold)).
   
     - To manage edge cases, [disable YAPF per line or per block](https://github.com/google/yapf#why-does-yapf-destroy-my-awesome-formatting). 
+
+
+## Flake8 - Python Style Guide Enforcer
+
+- [Flake8](https://github.com/PyCQA/flake8) is a wrapper around three tools:
+
+    1. [PyFlakes](https://github.com/PyCQA/pyflakes), which checks for Python errors.
     
-
-## Isort - Python Imports Sorter
-
-- **[Isort](https://github.com/timothycrosley/isort) automatically sorts Python imports in alphabetical order as well as separates them into defined sections.**
-
-- There are several knobs configuring Isort's behavior. Full reference of settings can be found [here](https://github.com/timothycrosley/isort/wiki/isort-Settings#full-reference-of-isort-settings).
-
-- You can specify project level configuration simply by placing a `.isort.cfg` file at the root of your project.
-
-    - You may find pre-configured [.isort.cfg](https://github.com/RTBHOUSE/big-bang-py/tree/master/.isort.cfg) at the root of this repo.
+    1. [pycodestyle](https://github.com/PyCQA/pycodestyle), which checks your Python code against some of the style conventions in [PEP 8](https://www.python.org/dev/peps/pep-0008/).
     
-- It is recommended to include Isort in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
+    1. [McCabe](https://github.com/PyCQA/mccabe), which checks for code complexity (see the next section for more details).
 
-- To manage edge cases, [disable Isort per line or for entire file](https://github.com/timothycrosley/isort#skip-processing-of-imports-outside-of-configuration).
+- Flake8 combines a lot of linters-horse-power under just one hood - in fact so much, that it may seem a little intimidating. However, if used correctly, it will make your code not only more consistent, but simply better (and more pythonic 🐍).
+
+- Flake8 is configurable, where specific setup can be pointed in a [couple of ways](http://flake8.pycqa.org/en/latest/user/configuration.html).
+
+    - You may find pre-configured [.flake8](https://github.com/RTBHOUSE/big-bang-py/tree/master/.flake8) at the root of this repo.
+
+- There is an abundance of [plugins](http://flake8.pycqa.org/en/latest/user/using-plugins.html) greatly extending capability of Flake8 - search for them on GitHub.
+
+    - A bunch of plugins are included in Flake8 configuration of this repo. See all `flake8-*` packages in [Pipfile](https://github.com/RTBHOUSE/big-bang-py/tree/master/Pipfile).
+
+- It is recommended to include Flake8 in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
 
 
 ## McCabe - Python Code Complexity Checker
@@ -167,9 +191,9 @@
 
 - Code with high cyclomatic complexity (usually assumed as 10+) is likely to be difficult to understand and therefore have a higher probability of containing defects.
     
-- It is recommended to include McCabe in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
+- It is recommended to include McCabe in your linting Invoke task and also to run it during pre-commit Git hook. In Big-Bang-py McCabe is run automatically by Flake8 linter, see both [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
 
-    - Cut-off complexity in Invoke task and pre-commit are arbitrarily assumed to be 7. However, this number should be adjusted to reflect your experience and project needs.
+    - Cut-off complexity in Invoke task and pre-commit is arbitrarily assumed to be 7 (configured by [max-complexity](http://flake8.pycqa.org/en/latest/user/options.html#cmdoption-flake8-max-complexity) set in [.flake8](https://github.com/RTBHOUSE/big-bang-py/tree/master/.flake8)). However, this number should be adjusted to reflect your experience and project needs.
 
 
 ## Pytest - Python Test Framework
@@ -320,10 +344,11 @@ Available tasks:
         # Logging time!
         logger.info('* THE GREAT BIRD IS LISTENING *')
         ```
+- Flake8 & Pipfile configuration of this repo uses [flake8-print plugin](https://github.com/JBKahn/flake8-print), which will find and warn you about using print statements. If they are no longer necessary, remove them. But if they are... log there! 
 
-- Learn more about logging in digestible form on [Real Python](https://realpython.com/python-logging/). 
+- Learn more about logging in a digestible form on [Real Python](https://realpython.com/python-logging/). 
 
-    - If you are an adventurous programmer that knows no fear, there is [official documentation](https://docs.python.org/3/library/logging.html) waiting out there. Bear in mind that because of this document, and its unnecessary complexity, a lot of people were scared off to the Sad Kingdom of Prints.
+    - If you are an adventurous programmer that knows no fear, there is [official documentation](https://docs.python.org/3/library/logging.html) waiting out there. Bear in mind that because of this document, and its unnecessary complexity, a lot of people were scared off and keep using prints.
 
 
 ## README - Gateway to your Code

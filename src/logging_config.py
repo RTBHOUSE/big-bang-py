@@ -28,7 +28,7 @@ DICT_CONFIG = {
             # At most `backupCount` of backup log files will be kept. If more
             # would be created when rollover occurs, the oldest one is deleted.
             'backupCount': 2,
-        }
+        },
     },
     'loggers': {
         'main': {
@@ -36,5 +36,5 @@ DICT_CONFIG = {
             'level': 'DEBUG',
             'propagate': True,
         },
-    }
+    },
 }

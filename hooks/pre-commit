@@ -61,20 +61,15 @@ if __name__ == '__main__':
 
     print('')
     print('##################################')
-    print('# Code Complexity Check (McCabe) #')
+    print('# Flake8 Style Guide Enforcement #')
     print('##################################')
     print('')
-    mccabe_result_obj = subprocess.run(['python', 'run_mccabe.py', '7'], capture_output=True)
-    mccabe_result_stdout = mccabe_result_obj.stdout.decode()
-    mccabe_result_lines_num = len(mccabe_result_stdout.rstrip('\n').split('\n'))
-    if mccabe_result_lines_num == 1:
-        print('Metric below threshold for every section of code => OK!')
+    flake8_return_code = subprocess.run(['flake8']).returncode
+    if flake8_return_code == 0:
+        print('Flake8 Exit Status: 0 => OK!')
         print('')
     else:
-        print(mccabe_result_stdout)
-        print(
-            f'Code is over-complex! Check McCabe cyclomatic complexity output. '
-            f'=> aborting commit!'
-        )
         print('')
-        sys.exit(1)
+        print(f'Flake8 Exit Status: {yapf_return_code} => aborting commit!')
+        print('')
+        sys.exit(yapf_return_code)

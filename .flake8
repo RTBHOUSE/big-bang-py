@@ -1,0 +1,14 @@
+[flake8]
+# D10X: missing docstring in public methods    (sometimes docstrings are simply unnecessary)
+# E241: multiple spaces after ','              (YAPF takes care of it)
+# E402: module level import not at top of file (isort takes care of it)
+# E501: line too long                          (YAPF takes care of it)
+# W503: line break before binary operator
+ignore = E241, E402, E501, W503, D100, D101, D102, D103, D104, D105, D106, D107
+
+# McCabe Cyclomatic Complexity
+max_complexity = 7
+
+statistics = True
+doctests = True
+show-source = True
