@@ -20,13 +20,22 @@ def coverage_report(c):
 @task
 def flake8_report(c):
     """Open refreshed Flake8 report in a browser."""
-    c.run('flake8 --format=html --htmldir=flake-report; open flake-report/index.html', pty=True)
+    c.run(
+        'python -m flake8 --format=html --htmldir=flake-report; '
+        'open flake-report/index.html',
+        pty=True
+    )
 
 
 @task
 def install_precommit(c):
     """Install pre-commit githook."""
-    c.run('cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit', pty=True)
+    c.run(
+        'cp hooks/pre-commit .git/hooks/pre-commit '
+        '&& chmod +x .git/hooks/pre-commit'
+        '&& git config --bool flake8.strict true',
+        pty=True
+    )
 
 
 @task
@@ -37,19 +46,19 @@ def linters(c):
     logger.info('# Isort - Sort Yer Python Imports #')
     logger.info('###################################')
     logger.info('')
-    c.run('isort --apply --quiet', pty=True)
+    c.run('python -m isort --apply --quiet', pty=True)
 
     logger.info('#######################################')
     logger.info('# YAPF - Yet Another Python Formatter #')
     logger.info('#######################################')
     logger.info('')
-    c.run('yapf --in-place --recursive .', pty=True)
+    c.run('python -m yapf --in-place --recursive .', pty=True)
 
     logger.info('#################################')
     logger.info('# Flake8 & Happy Plugins Family #')
     logger.info('#################################')
     logger.info('')
-    c.run('flake8', pty=True)
+    c.run('python -m flake8', pty=True)
 
 
 @task(post=[install_precommit])

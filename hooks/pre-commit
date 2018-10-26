@@ -3,6 +3,7 @@
 import subprocess
 import sys
 
+from flake8.main import git
 from isort.hooks import git_hook as isort_githook
 
 if __name__ == '__main__':
@@ -52,7 +53,6 @@ if __name__ == '__main__':
     yapf_return_code = subprocess.run(['yapf', '--recursive', '--diff', '.']).returncode
     if yapf_return_code == 0:
         print('YAPF Exit Status: 0 => OK!')
-        print('')
     else:
         print('')
         print(f'YAPF Exit Status: {yapf_return_code} => aborting commit!')
@@ -64,12 +64,15 @@ if __name__ == '__main__':
     print('# Flake8 Style Guide Enforcement #')
     print('##################################')
     print('')
-    flake8_return_code = subprocess.run(['flake8']).returncode
+    flake8_return_code = git.hook(
+        strict=git.config_for('strict'),
+        lazy=git.config_for('lazy'),
+    )
     if flake8_return_code == 0:
         print('Flake8 Exit Status: 0 => OK!')
         print('')
     else:
         print('')
-        print(f'Flake8 Exit Status: {yapf_return_code} => aborting commit!')
+        print(f'Flake8 Exit Status: {flake8_return_code} => aborting commit!')
         print('')
-        sys.exit(yapf_return_code)
+        sys.exit(flake8_return_code)

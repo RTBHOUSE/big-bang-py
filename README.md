@@ -168,9 +168,9 @@
     
     1. [pycodestyle](https://github.com/PyCQA/pycodestyle), which checks your Python code against some of the style conventions in [PEP 8](https://www.python.org/dev/peps/pep-0008/).
     
-    1. [McCabe](https://github.com/PyCQA/mccabe), which checks for code complexity (see the next section for more details).
+    1. [McCabe](https://github.com/PyCQA/mccabe), which checks for code complexity (see the [next section](#mccabe---python-code-complexity-checker) for more details).
 
-- Flake8 combines a lot of linters-horse-power under just one hood - in fact so much, that it may seem a little intimidating. However, if used correctly, it will make your code not only more consistent, but simply better (and more pythonic 🐍).
+- Flake8 combines so much linter-power under the hood of one tool, that it may seem a bit too powerful. However, if used correctly, it will make your code not only more consistent, but simply better (and more pythonic 🐍).
 
 - Flake8 is configurable, where specific setup can be pointed in a [couple of ways](http://flake8.pycqa.org/en/latest/user/configuration.html).
 
@@ -179,6 +179,8 @@
 - There is an abundance of [plugins](http://flake8.pycqa.org/en/latest/user/using-plugins.html) greatly extending capability of Flake8 - search for them on GitHub.
 
     - A bunch of plugins are included in Flake8 configuration of this repo. See all `flake8-*` packages in [Pipfile](https://github.com/RTBHOUSE/big-bang-py/tree/master/Pipfile).
+    
+        - An interesting example is [flake8-html](https://github.com/lordmauve/flake8-html), which generates readable HTML report, similar to `coverage html`.
 
 - It is recommended to include Flake8 in your linting Invoke task and also to run it during pre-commit Git hook. Example of both can be found in [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) and [pre-commit](https://github.com/RTBHOUSE/big-bang-py/tree/master/hooks/pre-commit) at the root of this repo.
 
