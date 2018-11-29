@@ -333,7 +333,11 @@ Options:
 
 - [Invoke tasks can be organised using namespaces](http://docs.pyinvoke.org/en/1.2/getting-started.html#creating-namespaces). Then, for instance, you can call server tasks like `jenkins.deploy`/`jenkins.logs` or organise job-related tasks like `job.start`/`job.stop`.
 
-- You may find examples of tasks in this repo's [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py).
+- Invoke can be easily buffed with [shell tab completion](http://docs.pyinvoke.org/en/1.2/invoke.html#shell-tab-completion).
+
+    - If you work on your projects using `bash` with virtualenv created by `pipenv shell`, a ready-2-go installation script can be found in the file [invoke_bash_completion](https://github.com/RTBHOUSE/big-bang-py/tree/master/invoke_bash_completion) at the root of this repo. If your development environment differs, this script can still give you a basis, or at least a hint, how to build a solution of your own. 
+
+- You may find examples of Invoke tasks in the file [tasks.py](https://github.com/RTBHOUSE/big-bang-py/tree/master/tasks.py) at the root of this repo.
 
 - [The official documentation](http://docs.pyinvoke.org/en/1.2/) is solid. Get familiar with it.
 

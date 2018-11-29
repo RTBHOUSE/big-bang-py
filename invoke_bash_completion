@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Make Invoke-bash-tab-completion automatically sourced by `pipenv shell`.
+"""
+
+import os
+import subprocess
+
+virtual_env_path = os.environ['VIRTUAL_ENV']
+virtual_env_activate_script_path = f'{virtual_env_path}/bin/activate'
+invoke_bash_completion_script_path = f'{virtual_env_path}/bin/invoke_bash_completion_script'
+
+subprocess.run(
+    f'invoke --print-completion-script=bash > {invoke_bash_completion_script_path}',
+    shell=True,
+)
+
+completion_script_activated = False
+with open(virtual_env_activate_script_path) as script:
+    for line in script:
+        if line.strip() == f'source {invoke_bash_completion_script_path}':
+            completion_script_activated = True
+            break
+if not completion_script_activated:
+    subprocess.run(
+        f"echo 'source {invoke_bash_completion_script_path}' "
+        f">> {virtual_env_activate_script_path}",
+        shell=True,
+    )
