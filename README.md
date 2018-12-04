@@ -2,7 +2,8 @@
 
 [Cookiecutter](https://github.com/audreyr/cookiecutter) template for Python projects. RTB House flavor.
 
-##Features
+
+## Features
 
 + Automatic setup via `./finish_project_setup` script, which: 
 
@@ -12,7 +13,7 @@
     
     + Initializes git and makes first commit.
     
-    + Installs pre-commit and triggers it to check if it works properly.
+    + Installs pre-commit and checks if it works.
     
     + Loads Pipenv shell, so you can start straight away.
 
@@ -32,6 +33,7 @@
 
 + README skeleton.
 
+
 ## Requirements
 
 + [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/installation.html#install-cookiecutter)
@@ -41,13 +43,21 @@
 
 ## Usage
 
-+ Generate a new project from command line by calling `cookiecutter gh:RTBHOUSE/big-bang-py`.
+```bash
+# Generate a new project.
+cookiecutter gh:RTBHOUSE/big-bang-py
 
-+ Answer all of the prompted questions.
+# Answer all of the prompted questions.
+# Brackets show default options. Click <enter> if you wish to accept them.
+project_name [My New Project]: ???
+project_dir  [my-new-project]: ???
+project_source_code_dir [src]: ???
 
-+ Run `./finish_project_setup` script.
+# Run the below script.
+./finish_project_setup
+```
 
-+ And Voilà! You're ready to code!
+Voilà! You are ready to code!
 
 
 ## License

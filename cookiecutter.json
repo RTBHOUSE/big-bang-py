@@ -1,5 +1,5 @@
 {
     "project_name": "My New Project",
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+    "project_dir": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
     "project_source_code_dir": "src"
 }
