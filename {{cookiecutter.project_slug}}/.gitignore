@@ -107,3 +107,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Project
+*.env
+!test.env
+*.log
+flake-report

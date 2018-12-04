@@ -32,7 +32,6 @@ if __name__ == '__main__':
     print('⚔️  https://github.com/pyupio/safety-db')
     print('')
     subprocess.run(['pipenv', 'check'])
-    print('')
 
     print('')
     print('######################')
