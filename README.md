@@ -53,7 +53,10 @@ project_name [My New Project]: ???
 project_dir  [my-new-project]: ???
 project_source_code_dir [src]: ???
 
-# Run the below script.
+# Go to your new project folder.
+cd $MY_NEW_PROJECT_DIR
+
+# Run the script below:
 ./finish_project_setup
 ```
 

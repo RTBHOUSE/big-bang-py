@@ -11,8 +11,11 @@
 
 + How to run the tests? How to check if the project works as intended?
 
+
 ## How to use?
 
+
 ## How to deploy?
+
 
 ## How to contribute?
