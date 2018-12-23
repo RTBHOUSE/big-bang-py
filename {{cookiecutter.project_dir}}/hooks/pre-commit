@@ -34,9 +34,9 @@ if __name__ == '__main__':
     subprocess.run(['pipenv', 'check'])
 
     print('')
-    print('######################')
-    print('# Import Order Check #')
-    print('######################')
+    print('######################################')
+    print('# Isort - Sort Imports Automatically #')
+    print('######################################')
     print('')
     isort_exit_status = isort_githook(strict=True)
     if isort_exit_status == 0:
@@ -45,9 +45,9 @@ if __name__ == '__main__':
         sys.exit(isort_exit_status)
 
     print('')
-    print('################################')
-    print('# Code Formatting Check (YAPF) #')
-    print('################################')
+    print('#####################################')
+    print('# YAPF - Enforce Python Style Guide #')
+    print('#####################################')
     print('')
     yapf_return_code = subprocess.run(['yapf', '--recursive', '--diff', '.']).returncode
     if yapf_return_code == 0:
@@ -59,9 +59,9 @@ if __name__ == '__main__':
         sys.exit(yapf_return_code)
 
     print('')
-    print('##################################')
-    print('# Flake8 Style Guide Enforcement #')
-    print('##################################')
+    print('####################################')
+    print('# Flake8 - Apply Dozens of Linters #')
+    print('####################################')
     print('')
     flake8_return_code = git.hook(
         strict=git.config_for('strict'),

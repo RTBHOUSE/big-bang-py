@@ -39,21 +39,21 @@ def install_precommit(c):
 def linters(c):
     """Lint source code using Isort, YAPF and Flake8 (with various plugins)."""
     logger.info('')
-    logger.info('###################################')
-    logger.info('# Isort - Sort Yer Python Imports #')
-    logger.info('###################################')
+    logger.info('######################################')
+    logger.info('# Isort - Sort Imports Automatically #')
+    logger.info('######################################')
     logger.info('')
     c.run('python -m isort --apply --quiet', pty=True)
 
-    logger.info('#######################################')
-    logger.info('# YAPF - Yet Another Python Formatter #')
-    logger.info('#######################################')
+    logger.info('#####################################')
+    logger.info('# YAPF - Enforce Python Style Guide #')
+    logger.info('#####################################')
     logger.info('')
     c.run('python -m yapf --in-place --recursive .', pty=True)
 
-    logger.info('#################################')
-    logger.info('# Flake8 & Happy Plugins Family #')
-    logger.info('#################################')
+    logger.info('####################################')
+    logger.info('# Flake8 - Apply Dozens of Linters #')
+    logger.info('####################################')
     logger.info('')
     c.run('python -m flake8', pty=True)
 
