@@ -22,6 +22,7 @@ echo ''
 git init
 git add .
 git reset finish_project_setup
+git reset invoke_bash_completion
 git commit -m 'Big Bang!' -m 'Project started using Cookiecutter: https://github.com/RTBHOUSE/big-bang-py'
 
 echo ''
