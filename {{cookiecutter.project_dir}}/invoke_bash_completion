@@ -28,3 +28,4 @@ if not completion_script_activated:
         f">> {virtual_env_activate_script_path}",
         shell=True,
     )
+    print('Invoke Bash tab-completion was installed in the virtual environment.')

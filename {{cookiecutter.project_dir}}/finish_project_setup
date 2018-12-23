@@ -13,16 +13,9 @@ echo ''
 pipenv install --dev
 
 echo ''
-echo '##################################'
-echo '# Install Invoke Bash Completion #'
-echo '##################################'
-echo ''
-pipenv run ./invoke_bash_completion
-rm -f invoke_bash_completion
-
-echo '#############################################'
-echo '# Initialize Git repo and make first commit #'
-echo '#############################################'
+echo '###############################################'
+echo '# Initialize Git repo and create first commit #'
+echo '###############################################'
 echo ''
 git init
 git add .
