@@ -45,7 +45,7 @@
 
 ```console
 # Generate a new project.
-$ cookiecutter gh:RTBHOUSE/big-bang-py
+> cookiecutter gh:RTBHOUSE/big-bang-py
 
 # Answer all of the prompted questions.
 # Brackets show default options. Click <enter> if you wish to accept them.
@@ -54,9 +54,9 @@ project_dir  [my-new-project]: ???
 project_source_code_dir [src]: ???
 
 # Finish with:
-$ cd $MY_NEW_PROJECT_DIR
-$ ./finish_project_setup
-$ ./invoke_bash_completion \
+> cd $MY_NEW_PROJECT_DIR
+> ./finish_project_setup
+> ./invoke_bash_completion \
       && rm -f invoke_bash_completion \
       && source $VIRTUAL_ENV/bin/activate
 
