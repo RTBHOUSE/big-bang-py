@@ -1,6 +1,6 @@
 import logging.config
 
-from invoke import task
+import invoke
 
 from {{ cookiecutter.project_source_code_dir }}.logging_config import DICT_CONFIG
 
@@ -8,13 +8,13 @@ logging.config.dictConfig(DICT_CONFIG)
 logger = logging.getLogger('main')
 
 
-@task
+@invoke.task
 def coverage_report(c):
     """Open refreshed coverage report in a browser."""
     c.run('coverage html && open htmlcov/index.html', pty=True)
 
 
-@task
+@invoke.task
 def flake8_report(c):
     """Open refreshed Flake8 report in a browser."""
     c.run(
@@ -24,7 +24,7 @@ def flake8_report(c):
     )
 
 
-@task
+@invoke.task
 def install_precommit(c):
     """Install pre-commit githook."""
     c.run(
@@ -35,7 +35,7 @@ def install_precommit(c):
     )
 
 
-@task
+@invoke.task
 def linters(c):
     """Lint source code using Isort, YAPF and Flake8 (with various plugins)."""
     logger.info('')
@@ -58,7 +58,7 @@ def linters(c):
     c.run('python -m flake8', pty=True)
 
 
-@task
+@invoke.task
 def tests(c):
     """Run pytests with coverage report."""
     c.run('python -m pytest --cov={{ cookiecutter.project_source_code_dir }} --cov=envs --cov-branch', pty=True)
