@@ -21,9 +21,9 @@ if __name__ == '__main__':
         sys.exit(tests_return_code)
 
     print('')
-    print('###########################')
-    print('# Dependency Safety Check #')
-    print('###########################')
+    print('#############################')
+    print('# Check dependencies safety #')
+    print('#############################')
     print('')
     print('Scan your dependency graph for known security vulnerabilities!')
     print('')
@@ -34,9 +34,9 @@ if __name__ == '__main__':
     subprocess.run(['pipenv', 'check'])
 
     print('')
-    print('######################################')
-    print('# Isort - Sort Imports Automatically #')
-    print('######################################')
+    print('###############################')
+    print('# Sort Python imports (Isort) #')
+    print('###############################')
     print('')
     isort_exit_status = isort_githook(strict=True)
     if isort_exit_status == 0:
@@ -46,7 +46,7 @@ if __name__ == '__main__':
 
     print('')
     print('#####################################')
-    print('# YAPF - Enforce Python Style Guide #')
+    print('# Enforce Python style guide (YAPF) #')
     print('#####################################')
     print('')
     yapf_return_code = subprocess.run(['yapf', '--recursive', '--diff', '.']).returncode
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     print('')
     print('####################################')
-    print('# Flake8 - Apply Dozens of Linters #')
+    print('# Apply dozens of linters (Flake8) #')
     print('####################################')
     print('')
     flake8_return_code = git.hook(

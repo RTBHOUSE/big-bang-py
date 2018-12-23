@@ -25,10 +25,12 @@ def flake8_report(c):
 
 
 @invoke.task
-def install_precommit(c):
-    """Install pre-commit githook."""
+def set_precommit(c):
+    """
+    Setup pre-commit Git hook saved in `$PROJECT_ROOT/githooks/pre-commit`.
+    """
     c.run(
-        'cp hooks/pre-commit .git/hooks/pre-commit '
+        'cp githooks/pre-commit .git/hooks/pre-commit '
         '&& chmod +x .git/hooks/pre-commit'
         '&& git config --bool flake8.strict true',
         pty=True
@@ -39,20 +41,20 @@ def install_precommit(c):
 def linters(c):
     """Lint source code using Isort, YAPF and Flake8 (with various plugins)."""
     logger.info('')
-    logger.info('######################################')
-    logger.info('# Isort - Sort Imports Automatically #')
-    logger.info('######################################')
+    logger.info('###############################')
+    logger.info('# Sort Python imports (Isort) #')
+    logger.info('###############################')
     logger.info('')
     c.run('python -m isort --apply --quiet', pty=True)
 
     logger.info('#####################################')
-    logger.info('# YAPF - Enforce Python Style Guide #')
+    logger.info('# Enforce Python style guide (YAPF) #')
     logger.info('#####################################')
     logger.info('')
     c.run('python -m yapf --in-place --recursive .', pty=True)
 
     logger.info('####################################')
-    logger.info('# Flake8 - Apply Dozens of Linters #')
+    logger.info('# Apply dozens of linters (Flake8) #')
     logger.info('####################################')
     logger.info('')
     c.run('python -m flake8', pty=True)
@@ -62,3 +64,21 @@ def linters(c):
 def tests(c):
     """Run pytests with coverage report."""
     c.run('python -m pytest --cov={{ cookiecutter.project_source_code_dir }} --cov=envs --cov-branch', pty=True)
+
+
+##################################
+# Organise tasks into namespaces #
+##################################
+
+# The main namespace MUST be named `namespace` or `ns`.
+# See: http://docs.pyinvoke.org/en/1.2/concepts/namespaces.html
+namespace = invoke.Collection()
+
+namespace.add_task(coverage_report)
+namespace.add_task(flake8_report)
+namespace.add_task(linters)
+namespace.add_task(tests)
+
+githooks_namespace = invoke.Collection('githooks')
+githooks_namespace.add_task(set_precommit)
+namespace.add_collection(githooks_namespace)

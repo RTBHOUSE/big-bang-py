@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
 echo ''
-echo '###########################'
-echo '# Finishing Project Setup #'
-echo '###########################'
+echo '###########################################'
+echo '# Remove this script to clean project dir #'
+echo '###########################################'
 echo ''
+rm -- "$0"  # https://stackoverflow.com/a/8981233
 
-echo '################################'
-echo '# Install App Dev Dependencies #'
-echo '################################'
+echo '#########################################'
+echo '# Install dev-dependencies using Pipenv #'
+echo '#########################################'
 echo ''
+pipenv run pip install pip==18.0  # Pipenv bug... https://github.com/pypa/pipenv/issues/2871
 pipenv install --dev
 
 echo ''
@@ -24,12 +26,9 @@ git commit -m 'Big Bang!' -m 'Project started using Cookiecutter: https://github
 
 echo ''
 echo '###########################################'
-echo '# Install and trigger pre-commit Git-hook #'
+echo '# Install and trigger pre-commit Git hook #'
 echo '###########################################'
-rm -- "$0"  # Remove the current script to have clean
-            # git working tree during pre-commit.
-            # https://stackoverflow.com/a/8981233
-pipenv run invoke install-precommit
+pipenv run invoke githooks.set-precommit
 pipenv run git commit
 
 echo ''
