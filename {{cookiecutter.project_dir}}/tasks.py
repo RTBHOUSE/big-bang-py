@@ -1,11 +1,6 @@
-import logging.config
-
 import invoke
 
-from {{ cookiecutter.project_source_code_dir }}.logging_config import DICT_CONFIG
-
-logging.config.dictConfig(DICT_CONFIG)
-logger = logging.getLogger('main')
+from {{ cookiecutter.project_source_code_dir }}.utils import cowsay
 
 
 @invoke.task
@@ -25,39 +20,27 @@ def flake8_report(c):
 
 
 @invoke.task
+def linters(c):
+    """Lint source code using Isort, YAPF and Flake8 (with various plugins)."""
+    print(cowsay('Sort Python imports with Isort'))  # noqa: T001
+    c.run('python -m isort --apply --quiet', pty=True)
+
+    print(cowsay('Enforce Python style guide with YAPF'))  # noqa: T001
+    c.run('python -m yapf --in-place --recursive .', pty=True)
+
+    print(cowsay('Apply dozens of linters with Flake8'))  # noqa: T001
+    c.run('python -m flake8', pty=True)
+
+
+@invoke.task
 def set_precommit(c):
-    """
-    Setup pre-commit Git hook saved in `$PROJECT_ROOT/githooks/pre-commit`.
-    """
+    """Set pre-commit Git hook saved in `$PROJECT_ROOT/githooks/pre-commit`."""
     c.run(
         'cp githooks/pre-commit .git/hooks/pre-commit '
         '&& chmod +x .git/hooks/pre-commit'
         '&& git config --bool flake8.strict true',
         pty=True
     )
-
-
-@invoke.task
-def linters(c):
-    """Lint source code using Isort, YAPF and Flake8 (with various plugins)."""
-    logger.info('')
-    logger.info('###############################')
-    logger.info('# Sort Python imports (Isort) #')
-    logger.info('###############################')
-    logger.info('')
-    c.run('python -m isort --apply --quiet', pty=True)
-
-    logger.info('#####################################')
-    logger.info('# Enforce Python style guide (YAPF) #')
-    logger.info('#####################################')
-    logger.info('')
-    c.run('python -m yapf --in-place --recursive .', pty=True)
-
-    logger.info('####################################')
-    logger.info('# Apply dozens of linters (Flake8) #')
-    logger.info('####################################')
-    logger.info('')
-    c.run('python -m flake8', pty=True)
 
 
 @invoke.task

@@ -2,16 +2,18 @@
 
 import subprocess
 import sys
+from pathlib import Path
 
 from flake8.main import git
 from isort.hooks import git_hook as isort_githook
 
+PROJECT_ROOT = str(Path(__file__).parent.parent.parent)
+sys.path.insert(0, PROJECT_ROOT)
+
+from src.utils import cowsay
+
 if __name__ == '__main__':
-    print('')
-    print('#############')
-    print('# Run tests #')
-    print('#############')
-    print('')
+    print(cowsay('Run tests'), end='\n\n')
     tests_return_code = subprocess.run(['invoke', 'tests']).returncode
     # Exit code 0:	All tests were collected and passed successfully
     # Exit code 5:	No tests were collected
@@ -20,35 +22,17 @@ if __name__ == '__main__':
         print(f'Tests Exit Status: {tests_return_code} => aborting commit!')
         sys.exit(tests_return_code)
 
-    print('')
-    print('#############################')
-    print('# Check dependencies safety #')
-    print('#############################')
-    print('')
-    print('Scan your dependency graph for known security vulnerabilities!')
-    print('')
-    print('See below for further information:')
-    print('⚔️  https://github.com/pypa/pipenv/blob/master/docs/advanced.rst#-detection-of-security-vulnerabilities')  # yapf: disable
-    print('⚔️  https://github.com/pyupio/safety-db')
-    print('')
+    print(cowsay('Check dependencies safety'), end='\n\n')
     subprocess.run(['pipenv', 'check'])
 
-    print('')
-    print('###############################')
-    print('# Sort Python imports (Isort) #')
-    print('###############################')
-    print('')
+    print(cowsay('Sort Python imports with Isort'), end='\n\n')
     isort_exit_status = isort_githook(strict=True)
     if isort_exit_status == 0:
         print('Isort Exit Status: 0 => OK!')
     else:
         sys.exit(isort_exit_status)
 
-    print('')
-    print('#####################################')
-    print('# Enforce Python style guide (YAPF) #')
-    print('#####################################')
-    print('')
+    print(cowsay('Enforce Python style guide with YAPF'), end='\n\n')
     yapf_return_code = subprocess.run(['yapf', '--recursive', '--diff', '.']).returncode
     if yapf_return_code == 0:
         print('YAPF Exit Status: 0 => OK!')
@@ -58,11 +42,7 @@ if __name__ == '__main__':
         print('')
         sys.exit(yapf_return_code)
 
-    print('')
-    print('####################################')
-    print('# Apply dozens of linters (Flake8) #')
-    print('####################################')
-    print('')
+    print(cowsay('Apply dozens of linters with Flake8'), end='\n\n')
     flake8_return_code = git.hook(
         strict=git.config_for('strict'),
         lazy=git.config_for('lazy'),

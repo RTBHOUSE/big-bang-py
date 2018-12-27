@@ -28,4 +28,9 @@ if not completion_script_activated:
         f">> {virtual_env_activate_script_path}",
         shell=True,
     )
-    print('Invoke Bash tab-completion was installed in the virtual environment.')
+    print('Invoke Bash tab-completion was installed in the virtualenv.')
+    print(f'Reload shell to activate it (e.g. `exit` -> `pipenv shell`)')
+
+print('Removing current script to clean project dir...')
+subprocess.run('rm ./invoke_bash_completion', shell=True)
+print('Done!')
