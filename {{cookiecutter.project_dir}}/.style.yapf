@@ -15,6 +15,7 @@ split_complex_comprehension = true
 split_before_dict_set_generator = true
 split_before_logical_operator = true
 split_before_bitwise_operator = true
+split_before_arithmetic_operator = true
 coalesce_brackets = true
 
 each_dict_entry_on_separate_line = true
