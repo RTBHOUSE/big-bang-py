@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Your project configuration should be stored in the environment.
     # See: https://12factor.net/config
     #
@@ -21,8 +21,8 @@ if __name__ == '__main__':
     logging.config.dictConfig(DICT_CONFIG)
 
     # Example of logging
-    logger = logging.getLogger('main')
-    logger.info('logging: configured')
+    logger = logging.getLogger("main")
+    logger.info("logging: configured")
 
     # And finally... Your startup code goes below! :)
     # For instance:

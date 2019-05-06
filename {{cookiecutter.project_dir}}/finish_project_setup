@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
 echo ''
-echo '###########################################'
-echo '# Remove this script to clean project dir #'
-echo '###########################################'
+echo '############################'
+echo '# Install dev-dependencies #'
+echo '############################'
 echo ''
-rm -- "$0"  # https://stackoverflow.com/a/8981233
+invoke dependencies.compile
+invoke dependencies.sync-dev
 
-echo '#########################################'
-echo '# Install dev-dependencies using Pipenv #'
-echo '#########################################'
-echo ''
-pipenv run pip install pip==18.0  # Pipenv bug... https://github.com/pypa/pipenv/issues/2871
-pipenv install --dev
-
-echo ''
 echo '###############################################'
 echo '# Initialize Git repo and create first commit #'
 echo '###############################################'
@@ -29,12 +22,21 @@ echo ''
 echo '###########################################'
 echo '# Install and trigger pre-commit Git hook #'
 echo '###########################################'
-pipenv run invoke githooks.set-precommit
-pipenv run git commit
+invoke set-precommit
+.git/hooks/pre-commit
 
 echo ''
-echo '#####################################'
-echo '# Load Pipenv shell for the project #'
-echo '#####################################'
+echo '#######################################'
+echo '# Scripts Auto-Destruction Activated! # '
+echo '#######################################'
 echo ''
-pipenv shell
+rm -- "$0"  # https://stackoverflow.com/a/8981233
+echo 'finish_project_setup... BOOM! GONE!'
+rm ./invoke_bash_completion
+echo 'invoke_bash_completion... BOOM! GONE!'
+
+echo ''
+echo '#######################################'
+echo '# You are good to go! Happy coding :) # '
+echo '#######################################'
+echo ''

@@ -5,40 +5,44 @@
 
 ## Features
 
-+ Automatic setup via `./finish_project_setup` script, which: 
++ Automatic setup via one-liner (see section [Usage](#usage)), which: 
 
-    + Installs app dependencies via Pipenv.
+    + Loads virtualenv, so you can start straight away.
     
-    + Installs Invoke Bash completion.
+    + Installs Invoke Bash tab-completion.
     
-    + Initializes git and makes first commit.
+    + Installs app dependencies with help of [pip-tools](https://github.com/jazzband/pip-tools).
+    
+    + Initializes git repository and makes first commit.
     
     + Installs pre-commit and checks if it works.
-    
-    + Loads Pipenv shell, so you can start straight away.
 
 + Configured .gitignore.
 
-+ Configured YAPF.
-
-+ Configured isort.
++ Configured Bandit.
 
 + Configured Flake8.
 
++ Configured isort.
+
 + Configured logging.
 
-+ Basic Invoke tasks.
++ Configured YAPF.
 
-+ Basic project structure (`main.py`, `source_code_dir`, `tests`, `envs`).
++ Ready-to-go CI script.
 
-+ README skeleton.
++ Basic Invoke tasks (**including automation of making a release!**)
+
++ Basic project structure (`main.py`, `source_code_dir`, `requirements`, `tests`, etc.).
+
++ README & CHANGELOG skeleton.
 
 
 ## Requirements
 
 + [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/installation.html#install-cookiecutter)
 
-+ [Pipenv](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv)
++ [virtualenv](https://virtualenv.pypa.io/en/latest/installation/)
 
 
 ## Usage
@@ -55,11 +59,11 @@ project_source_code_dir [src]: ???
 
 # Finish with:
 > cd $MY_NEW_PROJECT_DIR
-> ./finish_project_setup
-> ./invoke_bash_completion \
-      && rm -f invoke_bash_completion \
-      && source $VIRTUAL_ENV/bin/activate
-
+> virtualenv venv \
+    && ./invoke_bash_completion \
+    && source venv/bin/activate \
+    && pip install invoke pip-tools \
+    && ./finish_project_setup
 ```
 
 And voilà! You are ready to code!

@@ -1,57 +1,22 @@
 #!/usr/bin/env python3
 
-import subprocess
-import sys
-from pathlib import Path
+import sys  # isort:skip
+sys.path.insert(0, '.')  # yapf: disable
 
-from flake8.main import git
-from isort.hooks import git_hook as isort_githook
+import time
 
-PROJECT_ROOT = str(Path(__file__).parent.parent.parent)
-sys.path.insert(0, PROJECT_ROOT)
+from ci.ci_checks import run_ci_checks
+from src.utils import cowsay, humanize_seconds
 
-from src.utils import cowsay
+
+def run_precommit():
+    start_time = time.perf_counter()
+
+    run_ci_checks()
+
+    end_time = time.perf_counter()
+    cowsay(f'Pre-commit execution time: {humanize_seconds(end_time - start_time)}')
+
 
 if __name__ == '__main__':
-    print(cowsay('Run tests'), end='\n\n')
-    tests_return_code = subprocess.run(['invoke', 'tests']).returncode
-    # Exit code 0:	All tests were collected and passed successfully
-    # Exit code 5:	No tests were collected
-    if tests_return_code not in {0, 5}:
-        print('')
-        print(f'Tests Exit Status: {tests_return_code} => aborting commit!')
-        sys.exit(tests_return_code)
-
-    print(cowsay('Check dependencies safety'), end='\n\n')
-    subprocess.run(['pipenv', 'check'])
-
-    print(cowsay('Sort Python imports with Isort'), end='\n\n')
-    isort_exit_status = isort_githook(strict=True)
-    if isort_exit_status == 0:
-        print('Isort Exit Status: 0 => OK!')
-    else:
-        sys.exit(isort_exit_status)
-
-    print(cowsay('Enforce Python style guide with YAPF'), end='\n\n')
-    yapf_return_code = subprocess.run(['yapf', '--recursive', '--diff', '.']).returncode
-    if yapf_return_code == 0:
-        print('YAPF Exit Status: 0 => OK!')
-    else:
-        print('')
-        print(f'YAPF Exit Status: {yapf_return_code} => aborting commit!')
-        print('')
-        sys.exit(yapf_return_code)
-
-    print(cowsay('Apply dozens of linters with Flake8'), end='\n\n')
-    flake8_return_code = git.hook(
-        strict=git.config_for('strict'),
-        lazy=git.config_for('lazy'),
-    )
-    if flake8_return_code == 0:
-        print('Flake8 Exit Status: 0 => OK!')
-        print('')
-    else:
-        print('')
-        print(f'Flake8 Exit Status: {flake8_return_code} => aborting commit!')
-        print('')
-        sys.exit(flake8_return_code)
+    run_precommit()

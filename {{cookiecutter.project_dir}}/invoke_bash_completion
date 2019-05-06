@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Make Invoke-bash-tab-completion automatically sourced by `pipenv shell`.
+Make Invoke-bash-tab-completion automatically sourced by virtualenv.
 """
 
-import os
 import subprocess
 
-virtual_env_path = os.environ['VIRTUAL_ENV']
-virtual_env_activate_script_path = f'{virtual_env_path}/bin/activate'
-invoke_bash_completion_script_path = f'{virtual_env_path}/bin/invoke_bash_completion_script'
+from src.utils import cowsay
+
+virtual_env_activate_script_path = f"venv/bin/activate"
+invoke_bash_completion_script_path = f"venv/bin/invoke_bash_completion_script"
 
 completion_script_activated = False
 with open(virtual_env_activate_script_path) as script:
     for line in script:
-        if f'source {invoke_bash_completion_script_path}' in line:
+        if f"source {invoke_bash_completion_script_path}" in line:
             completion_script_activated = True
             break
 
 if not completion_script_activated:
     subprocess.run(
-        f'invoke --print-completion-script=bash > {invoke_bash_completion_script_path}',
+        f"invoke --print-completion-script=bash > {invoke_bash_completion_script_path}",
         shell=True,
     )
     subprocess.run(
@@ -28,9 +28,4 @@ if not completion_script_activated:
         f">> {virtual_env_activate_script_path}",
         shell=True,
     )
-    print('Invoke Bash tab-completion was installed in the virtualenv.')
-    print(f'Reload shell to activate it (e.g. `exit` -> `pipenv shell`)')
-
-print('Removing current script to clean project dir...')
-subprocess.run('rm ./invoke_bash_completion', shell=True)
-print('Done!')
+    cowsay("Invoke Bash tab-completion was installed in the virtualenv.")

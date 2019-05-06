@@ -1,4 +1,9 @@
 [flake8]
+
+inline-quotes = double
+multiline-quotes = double
+docstring-quotes = double
+
 ignore =
     # C408: Unnecessary (dict/list/tuple) call - rewrite as a literal
     #
@@ -39,6 +44,15 @@ ignore =
     # match operators with operands.
     # See: https://github.com/PyCQA/pycodestyle/issues/197#issuecomment-219742628
     W503
+
+exclude = venv
+
+per-file-ignores =
+  ci/ci_checks.py: T001
+  src/utils.py: T001
+  tasks/dependencies.py: T001
+  tasks/project.py: T001
+  tasks/release.py: T001
 
 # McCabe Cyclomatic Complexity
 max_complexity = 7
