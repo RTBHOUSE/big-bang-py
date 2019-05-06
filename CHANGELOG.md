@@ -13,7 +13,7 @@
 
 + Refactor utilities and add <humanize_seconds>.
 
-+ Rename folder <constants> to <dirs>.
++ Rename folder \<constants> to \<dirs>.
 
 + Add Bandit.
 
