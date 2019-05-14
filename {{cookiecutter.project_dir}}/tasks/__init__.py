@@ -16,6 +16,6 @@ namespace.add_task(project_tasks.set_precommit)
 namespace.add_task(project_tasks.run_tests)
 
 dependencies_namespace = invoke.Collection("dependencies")
-dependencies_namespace.add_task(dependencies_tasks.compile)
+dependencies_namespace.add_task(dependencies_tasks.compile_, name="compile")
 dependencies_namespace.add_task(dependencies_tasks.sync_dev)
 namespace.add_collection(dependencies_namespace)

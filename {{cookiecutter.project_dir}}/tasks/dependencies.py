@@ -2,7 +2,7 @@ import invoke
 
 
 @invoke.task
-def compile(c):
+def compile_(c):
     """Compile dependencies using pip-tools (https://github.com/jazzband/pip-tools)."""
     c.run(
         "pip-compile "

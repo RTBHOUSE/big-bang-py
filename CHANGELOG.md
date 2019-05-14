@@ -7,6 +7,8 @@
     + Replace 'src' with '{{ cookiecutter.project_source_code_dir }}'.
     
     + Change .version to '0.0.0' to fix 'make-release' Invoke task.
+    
+    + Remove shadowing of 'compile' built-in.
 
 
 ## 0.1.0 - 2019-05-06
