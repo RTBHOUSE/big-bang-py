@@ -7,7 +7,7 @@ import sys
 from flake8.main import git
 from isort.hooks import git_hook as isort_githook
 
-from src.utils import cowsay
+from {{ cookiecutter.project_source_code_dir }}.utils import cowsay
 
 
 def run_ci_checks():
@@ -43,7 +43,7 @@ def _check_imports_order_with_isort():
 def _check_code_formatting_with_yapf():
     cowsay("Code Formatting Check (YAPF)")
     yapf_cmd = [
-        "yapf", "--recursive", "--diff", "ci/", "envs/", "githooks/", "src/", "tasks/", "tests/"
+        "yapf", "--recursive", "--diff", "ci/", "envs/", "githooks/", "{{ cookiecutter.project_source_code_dir }}/", "tasks/", "tests/"
     ]
     yapf_return_code = subprocess.run(yapf_cmd).returncode  # nosec
     if yapf_return_code == 0:

@@ -1,6 +1,6 @@
 import invoke
 
-from src.utils import cowsay
+from {{ cookiecutter.project_source_code_dir }}.utils import cowsay
 
 
 @invoke.task
@@ -35,7 +35,7 @@ def linters(c):
     c.run("python -m isort --apply --quiet", pty=True)
 
     cowsay("YAPF - Yet Another Python Formatter", print_end="\n")
-    c.run("python -m yapf --in-place --recursive ci/ envs/ githooks/ src/ tasks/ tests/", pty=True)
+    c.run("python -m yapf --in-place --recursive ci/ envs/ githooks/ {{ cookiecutter.project_source_code_dir }}/ tasks/ tests/", pty=True)
 
     cowsay("Flake8 & Happy Plugins Family", print_end="\n")
     c.run("python -m flake8", pty=True)
@@ -61,4 +61,4 @@ def set_precommit(c):
 @invoke.task
 def run_tests(c, tests="tests"):
     """Run pytests with coverage report."""
-    c.run(f"python -m pytest {tests} --cov=src --cov-branch", pty=True)
+    c.run(f"python -m pytest {tests} --cov={{ cookiecutter.project_source_code_dir }} --cov-branch", pty=True)

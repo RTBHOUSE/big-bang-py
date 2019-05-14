@@ -49,7 +49,7 @@ exclude = venv
 
 per-file-ignores =
   ci/ci_checks.py: T001
-  src/utils.py: T001
+  {{ cookiecutter.project_source_code_dir }}/utils.py: T001
   tasks/dependencies.py: T001
   tasks/project.py: T001
   tasks/release.py: T001

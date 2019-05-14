@@ -6,7 +6,7 @@ sys.path.insert(0, '.')  # yapf: disable
 import time
 
 from ci.ci_checks import run_ci_checks
-from src.utils import cowsay, humanize_seconds
+from {{ cookiecutter.project_source_code_dir }}.utils import cowsay, humanize_seconds
 
 
 def run_precommit():

@@ -4,7 +4,7 @@ from datetime import date
 
 import invoke
 
-from src.utils import cowsay
+from {{ cookiecutter.project_source_code_dir }}.utils import cowsay
 
 
 @invoke.task(help={"type": "[REQUIRED] Allowed values: 'major', 'minor', 'patch'."})

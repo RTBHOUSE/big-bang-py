@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
++ Bugs:
+
+    + Replace 'src' with '{{ cookiecutter.project_source_code_dir }}'.
+
 
 ## 0.1.0 - 2019-05-06
 

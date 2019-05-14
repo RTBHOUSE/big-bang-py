@@ -6,7 +6,7 @@ Make Invoke-bash-tab-completion automatically sourced by virtualenv.
 
 import subprocess
 
-from src.utils import cowsay
+from {{ cookiecutter.project_source_code_dir }}.utils import cowsay
 
 virtual_env_activate_script_path = f"venv/bin/activate"
 invoke_bash_completion_script_path = f"venv/bin/invoke_bash_completion_script"
