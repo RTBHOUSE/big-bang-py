@@ -5,6 +5,8 @@
 + Bugs:
 
     + Replace 'src' with '{{ cookiecutter.project_source_code_dir }}'.
+    
+    + Change .version to '0.0.0' to fix 'make-release' Invoke task.
 
 
 ## 0.1.0 - 2019-05-06
