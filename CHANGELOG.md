@@ -10,6 +10,10 @@
     
     + Remove shadowing of 'compile' built-in.
 
++ Miscellaneous:
+
+    + Change release commit message in 'make-release' Invoke task.
+
 
 ## 0.1.0 - 2019-05-06
 

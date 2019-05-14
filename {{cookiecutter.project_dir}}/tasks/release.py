@@ -86,7 +86,7 @@ def _update_version_in_files(new_version):
 def _commit_tag_and_push_new_release(c, new_version):
     cowsay("Commit New Release", print_end="\n")
     c.run(command="git add .version CHANGELOG.md", pty=True)
-    c.run(command=f"git commit -m 'ver: {new_version}'", pty=True)
+    c.run(command=f"git commit -m 'Release {new_version}'", pty=True)
 
     cowsay("Tag New Release")
     c.run(command=f"git tag {new_version}", pty=True)
