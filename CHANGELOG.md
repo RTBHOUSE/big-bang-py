@@ -10,6 +10,10 @@
     
     + Remove shadowing of 'compile' built-in.
 
++ Docs:
+
+    + Add Invoke tasks to README skeleton.
+
 + Miscellaneous:
 
     + Change release commit message in 'make-release' Invoke task.
