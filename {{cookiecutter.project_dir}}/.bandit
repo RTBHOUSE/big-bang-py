@@ -1,8 +1,0 @@
-[bandit]
-
-exclude: /tests,/venv
-
-# B322:
-# False alarm in Python 3
-# https://github.com/PyCQA/bandit/issues/402
-skips: B322

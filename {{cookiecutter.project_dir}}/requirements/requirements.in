@@ -1,0 +1,17 @@
+# linters
+flake8
+flake8-bugbear
+flake8-builtins
+mypy
+isort
+bandit
+black
+
+# tests
+pytest
+pytest-socket
+pytest-sugar
+coverage
+
+# setup tools
+pip-tools
