@@ -1,0 +1,13 @@
+version: "3.6"
+
+services:
+  app:
+    build:
+      args:
+        UID: ${UID}
+        GID: ${GID}
+      context: ..
+      dockerfile: docker/app/Dockerfile
+    command: ["python", "src/app.py"]
+    volumes:
+      - ..:/app

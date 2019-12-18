@@ -1,0 +1,23 @@
+image: python:{{ cookiecutter.python_version }}
+
+options:
+  docker: true
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - pip
+          - docker
+        script:
+          - pip install docker-compose
+          - make dotenv
+          - make build
+          - make black
+          - make flake8
+          - make mypy
+          - make isort
+          - make bandit
+          - make tests
+          - echo $GCP_JSON_KEY | docker login -u _json_key --password-stdin https://eu.gcr.io
+          - make push_images

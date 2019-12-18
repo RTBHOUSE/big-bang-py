@@ -1,0 +1,32 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'master')
+        string(name: 'DOCKER_IMAGE_TAG', defaultValue: 'latest', description: 'Image to be deployed')
+        booleanParam(name: 'SETUP', defaultValue: false, description: 'Check the box if Ansible roles tagged as `setup` should be ran too.')
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                script {
+                    if (params.SETUP) {
+                        env.TAGS="setup,deploy"
+                    } else {
+                        env.TAGS="deploy"
+                    }
+                }
+                sh "ansible-playbook -i ansible/inventory.ini -u jenkins --tags \"${env.TAGS}\" -e \"docker_image_tag=${params.DOCKER_IMAGE_TAG}\" --ssh-extra-args=\"-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null\" ansible/deploy.yml"
+            }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
