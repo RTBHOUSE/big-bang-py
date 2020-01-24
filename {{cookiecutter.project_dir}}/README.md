@@ -12,6 +12,9 @@
 * [Production server]()
 * [GCP Project]()
 
+## Setup
+
+* Create `.env` file based on `.env.example`
 
 ## Development
 
@@ -22,10 +25,6 @@ There is a bunch of makefiles to ease developers life. You can get list of avail
 * Docker
 * Docker Compose
 * GNU Make
-
-### Prepare dev environment
-
-`make dev-env`
 
 ### Run dev server
 
